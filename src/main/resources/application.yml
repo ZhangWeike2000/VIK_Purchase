@@ -9,7 +9,7 @@ spring:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   type-aliases-package: csxt.entity
-  #configuration:
-    #map-underscore-to-camel-case: true #是否开启驼峰命名
+  configuration:
+    map-underscore-to-camel-case: true #是否开启驼峰命名
 
 
