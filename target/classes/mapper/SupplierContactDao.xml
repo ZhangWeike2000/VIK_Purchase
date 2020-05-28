@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="csxt.jyx.dao.SupplierContactDao">
+
+    <resultMap type="csxt.entity.SupplierContact" id="SupplierContactMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="supplierId" column="supplier_id" jdbcType="INTEGER"/>
+        <result property="supplierName" column="supplier_name" jdbcType="VARCHAR"/>
+        <result property="supplierPhone" column="supplier_phone" jdbcType="VARCHAR"/>
+        <result property="contactId" column="contact_id" jdbcType="INTEGER"/>
+        <result property="contactReasonName" column="contact_reason_name" jdbcType="VARCHAR"/>
+        <result property="reasonId" column="reason_id" jdbcType="INTEGER"/>
+        <result property="beContact" column="be_contact" jdbcType="VARCHAR"/>
+        <result property="contactWay" column="contact_way" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="contactTime" column="contact_time" jdbcType="TIMESTAMP"/>
+        <result property="contactPerson" column="contact_person" jdbcType="VARCHAR"/>
+        <result property="contactPersonCoding" column="contact_person_coding" jdbcType="INTEGER"/>
+        <result property="checker" column="checker" jdbcType="VARCHAR"/>
+        <result property="checkTime" column="check_time" jdbcType="TIMESTAMP"/>
+        <result property="checkerCoding" column="checker_coding" jdbcType="INTEGER"/>
+        <result property="checkTag" column="check_tag" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SupplierContactMap">
+        select
+          id, supplier_id, supplier_name, supplier_phone, contact_id, contact_reason_name, reason_id, be_contact, contact_way, phone, content, contact_time, contact_person, contact_person_coding, checker, check_time, checker_coding, check_tag
+        from erp.supplier_contact
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SupplierContactMap">
+        select
+          id, supplier_id, supplier_name, supplier_phone, contact_id, contact_reason_name, reason_id, be_contact, contact_way, phone, content, contact_time, contact_person, contact_person_coding, checker, check_time, checker_coding, check_tag
+        from erp.supplier_contact
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SupplierContactMap">
+        select
+          id, supplier_id, supplier_name, supplier_phone, contact_id, contact_reason_name, reason_id, be_contact, contact_way, phone, content, contact_time, contact_person, contact_person_coding, checker, check_time, checker_coding, check_tag
+        from erp.supplier_contact
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="supplierId != null">
+                and supplier_id = #{supplierId}
+            </if>
+            <if test="supplierName != null and supplierName != ''">
+                and supplier_name = #{supplierName}
+            </if>
+            <if test="supplierPhone != null and supplierPhone != ''">
+                and supplier_phone = #{supplierPhone}
+            </if>
+            <if test="contactId != null">
+                and contact_id = #{contactId}
+            </if>
+            <if test="contactReasonName != null and contactReasonName != ''">
+                and contact_reason_name = #{contactReasonName}
+            </if>
+            <if test="reasonId != null">
+                and reason_id = #{reasonId}
+            </if>
+            <if test="beContact != null and beContact != ''">
+                and be_contact = #{beContact}
+            </if>
+            <if test="contactWay != null and contactWay != ''">
+                and contact_way = #{contactWay}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="content != null and content != ''">
+                and content = #{content}
+            </if>
+            <if test="contactTime != null">
+                and contact_time = #{contactTime}
+            </if>
+            <if test="contactPerson != null and contactPerson != ''">
+                and contact_person = #{contactPerson}
+            </if>
+            <if test="contactPersonCoding != null">
+                and contact_person_coding = #{contactPersonCoding}
+            </if>
+            <if test="checker != null and checker != ''">
+                and checker = #{checker}
+            </if>
+            <if test="checkTime != null">
+                and check_time = #{checkTime}
+            </if>
+            <if test="checkerCoding != null">
+                and checker_coding = #{checkerCoding}
+            </if>
+            <if test="checkTag != null and checkTag != ''">
+                and check_tag = #{checkTag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into erp.supplier_contact(supplier_id, supplier_name, supplier_phone, contact_id, contact_reason_name, reason_id, be_contact, contact_way, phone, content, contact_time, contact_person, contact_person_coding, checker, check_time, checker_coding, check_tag)
+        values (#{supplierId}, #{supplierName}, #{supplierPhone}, #{contactId}, #{contactReasonName}, #{reasonId}, #{beContact}, #{contactWay}, #{phone}, #{content}, #{contactTime}, #{contactPerson}, #{contactPersonCoding}, #{checker}, #{checkTime}, #{checkerCoding}, #{checkTag})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update erp.supplier_contact
+        <set>
+            <if test="supplierId != null">
+                supplier_id = #{supplierId},
+            </if>
+            <if test="supplierName != null and supplierName != ''">
+                supplier_name = #{supplierName},
+            </if>
+            <if test="supplierPhone != null and supplierPhone != ''">
+                supplier_phone = #{supplierPhone},
+            </if>
+            <if test="contactId != null">
+                contact_id = #{contactId},
+            </if>
+            <if test="contactReasonName != null and contactReasonName != ''">
+                contact_reason_name = #{contactReasonName},
+            </if>
+            <if test="reasonId != null">
+                reason_id = #{reasonId},
+            </if>
+            <if test="beContact != null and beContact != ''">
+                be_contact = #{beContact},
+            </if>
+            <if test="contactWay != null and contactWay != ''">
+                contact_way = #{contactWay},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="content != null and content != ''">
+                content = #{content},
+            </if>
+            <if test="contactTime != null">
+                contact_time = #{contactTime},
+            </if>
+            <if test="contactPerson != null and contactPerson != ''">
+                contact_person = #{contactPerson},
+            </if>
+            <if test="contactPersonCoding != null">
+                contact_person_coding = #{contactPersonCoding},
+            </if>
+            <if test="checker != null and checker != ''">
+                checker = #{checker},
+            </if>
+            <if test="checkTime != null">
+                check_time = #{checkTime},
+            </if>
+            <if test="checkerCoding != null">
+                checker_coding = #{checkerCoding},
+            </if>
+            <if test="checkTag != null and checkTag != ''">
+                check_tag = #{checkTag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from erp.supplier_contact where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="csxt.jyx.dao.SupplierAreaDao">
+
+    <resultMap type="csxt.entity.SupplierArea" id="SupplierAreaMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="areaName" column="area_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SupplierAreaMap">
+        select
+          id, area_name
+        from erp.supplier_area
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SupplierAreaMap">
+        select
+          id, area_name
+        from erp.supplier_area
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SupplierAreaMap">
+        select
+          id, area_name
+        from erp.supplier_area
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="areaName != null and areaName != ''">
+                and area_name = #{areaName}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into erp.supplier_area(area_name)
+        values (#{areaName})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update erp.supplier_area
+        <set>
+            <if test="areaName != null and areaName != ''">
+                area_name = #{areaName},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from erp.supplier_area where id = #{id}
+    </delete>
+
+</mapper>
