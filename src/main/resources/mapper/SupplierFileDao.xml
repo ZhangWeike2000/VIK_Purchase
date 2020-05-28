@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="csxt.jyx.dao.SupplierFileDao">
+
+    <resultMap type="csxt.entity.SupplierFile" id="SupplierFileMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="supplierName" column="supplier_name" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="firstKindId" column="first_kind_id" jdbcType="VARCHAR"/>
+        <result property="firstKindName" column="first_kind_name" jdbcType="VARCHAR"/>
+        <result property="secondKindId" column="second_kind_id" jdbcType="VARCHAR"/>
+        <result property="secondKindName" column="second_kind_name" jdbcType="VARCHAR"/>
+        <result property="thirdKindId" column="third_kind_id" jdbcType="VARCHAR"/>
+        <result property="thirdKindName" column="third_kind_name" jdbcType="VARCHAR"/>
+        <result property="formerName" column="former_name" jdbcType="VARCHAR"/>
+        <result property="bankType" column="bank_type" jdbcType="VARCHAR"/>
+        <result property="bankAccount" column="bank_account" jdbcType="VARCHAR"/>
+        <result property="url" column="url" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="fax" column="fax" jdbcType="VARCHAR"/>
+        <result property="postalCode" column="postal_code" jdbcType="VARCHAR"/>
+        <result property="areaId" column="area_id" jdbcType="INTEGER"/>
+        <result property="areaName" column="area_name" jdbcType="VARCHAR"/>
+        <result property="rankId" column="rank_id" jdbcType="INTEGER"/>
+        <result property="rankName" column="rank_name" jdbcType="VARCHAR"/>
+        <result property="firstContacts" column="first_contacts" jdbcType="VARCHAR"/>
+        <result property="firstDepartment" column="first_department" jdbcType="VARCHAR"/>
+        <result property="firstDuty" column="first_duty" jdbcType="VARCHAR"/>
+        <result property="firstOfficePhone" column="first_office_phone" jdbcType="VARCHAR"/>
+        <result property="firstPhone" column="first_phone" jdbcType="VARCHAR"/>
+        <result property="firstFamilyPhone" column="first_family_phone" jdbcType="VARCHAR"/>
+        <result property="firstEmail" column="first_email" jdbcType="VARCHAR"/>
+        <result property="firstSex" column="first_sex" jdbcType="VARCHAR"/>
+        <result property="secondContacts" column="second_contacts" jdbcType="VARCHAR"/>
+        <result property="secondDepartment" column="second_department" jdbcType="VARCHAR"/>
+        <result property="secondDuty" column="second_duty" jdbcType="VARCHAR"/>
+        <result property="secondOfficePhone" column="second_office_phone" jdbcType="VARCHAR"/>
+        <result property="secondPhone" column="second_phone" jdbcType="VARCHAR"/>
+        <result property="secondFamilyPhone" column="second_family_phone" jdbcType="VARCHAR"/>
+        <result property="secondEmail" column="second_email" jdbcType="VARCHAR"/>
+        <result property="secondSex" column="second_sex" jdbcType="VARCHAR"/>
+        <result property="billingInformation" column="billing_information" jdbcType="VARCHAR"/>
+        <result property="supplyGather" column="supply_gather" jdbcType="VARCHAR"/>
+        <result property="recommendGather" column="recommend_gather" jdbcType="VARCHAR"/>
+        <result property="registerNumber" column="register_number" jdbcType="INTEGER"/>
+        <result property="register" column="register" jdbcType="VARCHAR"/>
+        <result property="registerTime" column="register_time" jdbcType="TIMESTAMP"/>
+        <result property="buyerNumber" column="buyer_number" jdbcType="INTEGER"/>
+        <result property="buyer" column="buyer" jdbcType="VARCHAR"/>
+        <result property="checker" column="checker" jdbcType="VARCHAR"/>
+        <result property="checkTime" column="check_time" jdbcType="TIMESTAMP"/>
+        <result property="checkTag" column="check_tag" jdbcType="VARCHAR"/>
+        <result property="changer" column="changer" jdbcType="VARCHAR"/>
+        <result property="changeTime" column="change_time" jdbcType="TIMESTAMP"/>
+        <result property="changeTag" column="change_tag" jdbcType="VARCHAR"/>
+        <result property="deleteTag" column="delete_tag" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SupplierFileMap">
+        select
+          id, supplier_name, address, first_kind_id, first_kind_name, second_kind_id, second_kind_name, third_kind_id, third_kind_name, former_name, bank_type, bank_account, url, phone, fax, postal_code, area_id, area_name, rank_id, rank_name, first_contacts, first_department, first_duty, first_office_phone, first_phone, first_family_phone, first_email, first_sex, second_contacts, second_department, second_duty, second_office_phone, second_phone, second_family_phone, second_email, second_sex, billing_information, supply_gather, recommend_gather, register_number, register, register_time, buyer_number, buyer, checker, check_time, check_tag, changer, change_time, change_tag, delete_tag
+        from erp.supplier_file
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SupplierFileMap">
+        select
+          id, supplier_name, address, first_kind_id, first_kind_name, second_kind_id, second_kind_name, third_kind_id, third_kind_name, former_name, bank_type, bank_account, url, phone, fax, postal_code, area_id, area_name, rank_id, rank_name, first_contacts, first_department, first_duty, first_office_phone, first_phone, first_family_phone, first_email, first_sex, second_contacts, second_department, second_duty, second_office_phone, second_phone, second_family_phone, second_email, second_sex, billing_information, supply_gather, recommend_gather, register_number, register, register_time, buyer_number, buyer, checker, check_time, check_tag, changer, change_time, change_tag, delete_tag
+        from erp.supplier_file
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SupplierFileMap">
+        select
+          id, supplier_name, address, first_kind_id, first_kind_name, second_kind_id, second_kind_name, third_kind_id, third_kind_name, former_name, bank_type, bank_account, url, phone, fax, postal_code, area_id, area_name, rank_id, rank_name, first_contacts, first_department, first_duty, first_office_phone, first_phone, first_family_phone, first_email, first_sex, second_contacts, second_department, second_duty, second_office_phone, second_phone, second_family_phone, second_email, second_sex, billing_information, supply_gather, recommend_gather, register_number, register, register_time, buyer_number, buyer, checker, check_time, check_tag, changer, change_time, change_tag, delete_tag
+        from erp.supplier_file
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="supplierName != null and supplierName != ''">
+                and supplier_name = #{supplierName}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="firstKindId != null and firstKindId != ''">
+                and first_kind_id = #{firstKindId}
+            </if>
+            <if test="firstKindName != null and firstKindName != ''">
+                and first_kind_name = #{firstKindName}
+            </if>
+            <if test="secondKindId != null and secondKindId != ''">
+                and second_kind_id = #{secondKindId}
+            </if>
+            <if test="secondKindName != null and secondKindName != ''">
+                and second_kind_name = #{secondKindName}
+            </if>
+            <if test="thirdKindId != null and thirdKindId != ''">
+                and third_kind_id = #{thirdKindId}
+            </if>
+            <if test="thirdKindName != null and thirdKindName != ''">
+                and third_kind_name = #{thirdKindName}
+            </if>
+            <if test="formerName != null and formerName != ''">
+                and former_name = #{formerName}
+            </if>
+            <if test="bankType != null and bankType != ''">
+                and bank_type = #{bankType}
+            </if>
+            <if test="bankAccount != null and bankAccount != ''">
+                and bank_account = #{bankAccount}
+            </if>
+            <if test="url != null and url != ''">
+                and url = #{url}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="fax != null and fax != ''">
+                and fax = #{fax}
+            </if>
+            <if test="postalCode != null and postalCode != ''">
+                and postal_code = #{postalCode}
+            </if>
+            <if test="areaId != null">
+                and area_id = #{areaId}
+            </if>
+            <if test="areaName != null and areaName != ''">
+                and area_name = #{areaName}
+            </if>
+            <if test="rankId != null">
+                and rank_id = #{rankId}
+            </if>
+            <if test="rankName != null and rankName != ''">
+                and rank_name = #{rankName}
+            </if>
+            <if test="firstContacts != null and firstContacts != ''">
+                and first_contacts = #{firstContacts}
+            </if>
+            <if test="firstDepartment != null and firstDepartment != ''">
+                and first_department = #{firstDepartment}
+            </if>
+            <if test="firstDuty != null and firstDuty != ''">
+                and first_duty = #{firstDuty}
+            </if>
+            <if test="firstOfficePhone != null and firstOfficePhone != ''">
+                and first_office_phone = #{firstOfficePhone}
+            </if>
+            <if test="firstPhone != null and firstPhone != ''">
+                and first_phone = #{firstPhone}
+            </if>
+            <if test="firstFamilyPhone != null and firstFamilyPhone != ''">
+                and first_family_phone = #{firstFamilyPhone}
+            </if>
+            <if test="firstEmail != null and firstEmail != ''">
+                and first_email = #{firstEmail}
+            </if>
+            <if test="firstSex != null and firstSex != ''">
+                and first_sex = #{firstSex}
+            </if>
+            <if test="secondContacts != null and secondContacts != ''">
+                and second_contacts = #{secondContacts}
+            </if>
+            <if test="secondDepartment != null and secondDepartment != ''">
+                and second_department = #{secondDepartment}
+            </if>
+            <if test="secondDuty != null and secondDuty != ''">
+                and second_duty = #{secondDuty}
+            </if>
+            <if test="secondOfficePhone != null and secondOfficePhone != ''">
+                and second_office_phone = #{secondOfficePhone}
+            </if>
+            <if test="secondPhone != null and secondPhone != ''">
+                and second_phone = #{secondPhone}
+            </if>
+            <if test="secondFamilyPhone != null and secondFamilyPhone != ''">
+                and second_family_phone = #{secondFamilyPhone}
+            </if>
+            <if test="secondEmail != null and secondEmail != ''">
+                and second_email = #{secondEmail}
+            </if>
+            <if test="secondSex != null and secondSex != ''">
+                and second_sex = #{secondSex}
+            </if>
+            <if test="billingInformation != null and billingInformation != ''">
+                and billing_information = #{billingInformation}
+            </if>
+            <if test="supplyGather != null and supplyGather != ''">
+                and supply_gather = #{supplyGather}
+            </if>
+            <if test="recommendGather != null and recommendGather != ''">
+                and recommend_gather = #{recommendGather}
+            </if>
+            <if test="registerNumber != null">
+                and register_number = #{registerNumber}
+            </if>
+            <if test="register != null and register != ''">
+                and register = #{register}
+            </if>
+            <if test="registerTime != null">
+                and register_time = #{registerTime}
+            </if>
+            <if test="buyerNumber != null">
+                and buyer_number = #{buyerNumber}
+            </if>
+            <if test="buyer != null and buyer != ''">
+                and buyer = #{buyer}
+            </if>
+            <if test="checker != null and checker != ''">
+                and checker = #{checker}
+            </if>
+            <if test="checkTime != null">
+                and check_time = #{checkTime}
+            </if>
+            <if test="checkTag != null and checkTag != ''">
+                and check_tag = #{checkTag}
+            </if>
+            <if test="changer != null and changer != ''">
+                and changer = #{changer}
+            </if>
+            <if test="changeTime != null">
+                and change_time = #{changeTime}
+            </if>
+            <if test="changeTag != null and changeTag != ''">
+                and change_tag = #{changeTag}
+            </if>
+            <if test="deleteTag != null and deleteTag != ''">
+                and delete_tag = #{deleteTag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into erp.supplier_file(supplier_name, address, first_kind_id, first_kind_name, second_kind_id, second_kind_name, third_kind_id, third_kind_name, former_name, bank_type, bank_account, url, phone, fax, postal_code, area_id, area_name, rank_id, rank_name, first_contacts, first_department, first_duty, first_office_phone, first_phone, first_family_phone, first_email, first_sex, second_contacts, second_department, second_duty, second_office_phone, second_phone, second_family_phone, second_email, second_sex, billing_information, supply_gather, recommend_gather, register_number, register, register_time, buyer_number, buyer, checker, check_time, check_tag, changer, change_time, change_tag, delete_tag)
+        values (#{supplierName}, #{address}, #{firstKindId}, #{firstKindName}, #{secondKindId}, #{secondKindName}, #{thirdKindId}, #{thirdKindName}, #{formerName}, #{bankType}, #{bankAccount}, #{url}, #{phone}, #{fax}, #{postalCode}, #{areaId}, #{areaName}, #{rankId}, #{rankName}, #{firstContacts}, #{firstDepartment}, #{firstDuty}, #{firstOfficePhone}, #{firstPhone}, #{firstFamilyPhone}, #{firstEmail}, #{firstSex}, #{secondContacts}, #{secondDepartment}, #{secondDuty}, #{secondOfficePhone}, #{secondPhone}, #{secondFamilyPhone}, #{secondEmail}, #{secondSex}, #{billingInformation}, #{supplyGather}, #{recommendGather}, #{registerNumber}, #{register}, #{registerTime}, #{buyerNumber}, #{buyer}, #{checker}, #{checkTime}, #{checkTag}, #{changer}, #{changeTime}, #{changeTag}, #{deleteTag})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update erp.supplier_file
+        <set>
+            <if test="supplierName != null and supplierName != ''">
+                supplier_name = #{supplierName},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="firstKindId != null and firstKindId != ''">
+                first_kind_id = #{firstKindId},
+            </if>
+            <if test="firstKindName != null and firstKindName != ''">
+                first_kind_name = #{firstKindName},
+            </if>
+            <if test="secondKindId != null and secondKindId != ''">
+                second_kind_id = #{secondKindId},
+            </if>
+            <if test="secondKindName != null and secondKindName != ''">
+                second_kind_name = #{secondKindName},
+            </if>
+            <if test="thirdKindId != null and thirdKindId != ''">
+                third_kind_id = #{thirdKindId},
+            </if>
+            <if test="thirdKindName != null and thirdKindName != ''">
+                third_kind_name = #{thirdKindName},
+            </if>
+            <if test="formerName != null and formerName != ''">
+                former_name = #{formerName},
+            </if>
+            <if test="bankType != null and bankType != ''">
+                bank_type = #{bankType},
+            </if>
+            <if test="bankAccount != null and bankAccount != ''">
+                bank_account = #{bankAccount},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="fax != null and fax != ''">
+                fax = #{fax},
+            </if>
+            <if test="postalCode != null and postalCode != ''">
+                postal_code = #{postalCode},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId},
+            </if>
+            <if test="areaName != null and areaName != ''">
+                area_name = #{areaName},
+            </if>
+            <if test="rankId != null">
+                rank_id = #{rankId},
+            </if>
+            <if test="rankName != null and rankName != ''">
+                rank_name = #{rankName},
+            </if>
+            <if test="firstContacts != null and firstContacts != ''">
+                first_contacts = #{firstContacts},
+            </if>
+            <if test="firstDepartment != null and firstDepartment != ''">
+                first_department = #{firstDepartment},
+            </if>
+            <if test="firstDuty != null and firstDuty != ''">
+                first_duty = #{firstDuty},
+            </if>
+            <if test="firstOfficePhone != null and firstOfficePhone != ''">
+                first_office_phone = #{firstOfficePhone},
+            </if>
+            <if test="firstPhone != null and firstPhone != ''">
+                first_phone = #{firstPhone},
+            </if>
+            <if test="firstFamilyPhone != null and firstFamilyPhone != ''">
+                first_family_phone = #{firstFamilyPhone},
+            </if>
+            <if test="firstEmail != null and firstEmail != ''">
+                first_email = #{firstEmail},
+            </if>
+            <if test="firstSex != null and firstSex != ''">
+                first_sex = #{firstSex},
+            </if>
+            <if test="secondContacts != null and secondContacts != ''">
+                second_contacts = #{secondContacts},
+            </if>
+            <if test="secondDepartment != null and secondDepartment != ''">
+                second_department = #{secondDepartment},
+            </if>
+            <if test="secondDuty != null and secondDuty != ''">
+                second_duty = #{secondDuty},
+            </if>
+            <if test="secondOfficePhone != null and secondOfficePhone != ''">
+                second_office_phone = #{secondOfficePhone},
+            </if>
+            <if test="secondPhone != null and secondPhone != ''">
+                second_phone = #{secondPhone},
+            </if>
+            <if test="secondFamilyPhone != null and secondFamilyPhone != ''">
+                second_family_phone = #{secondFamilyPhone},
+            </if>
+            <if test="secondEmail != null and secondEmail != ''">
+                second_email = #{secondEmail},
+            </if>
+            <if test="secondSex != null and secondSex != ''">
+                second_sex = #{secondSex},
+            </if>
+            <if test="billingInformation != null and billingInformation != ''">
+                billing_information = #{billingInformation},
+            </if>
+            <if test="supplyGather != null and supplyGather != ''">
+                supply_gather = #{supplyGather},
+            </if>
+            <if test="recommendGather != null and recommendGather != ''">
+                recommend_gather = #{recommendGather},
+            </if>
+            <if test="registerNumber != null">
+                register_number = #{registerNumber},
+            </if>
+            <if test="register != null and register != ''">
+                register = #{register},
+            </if>
+            <if test="registerTime != null">
+                register_time = #{registerTime},
+            </if>
+            <if test="buyerNumber != null">
+                buyer_number = #{buyerNumber},
+            </if>
+            <if test="buyer != null and buyer != ''">
+                buyer = #{buyer},
+            </if>
+            <if test="checker != null and checker != ''">
+                checker = #{checker},
+            </if>
+            <if test="checkTime != null">
+                check_time = #{checkTime},
+            </if>
+            <if test="checkTag != null and checkTag != ''">
+                check_tag = #{checkTag},
+            </if>
+            <if test="changer != null and changer != ''">
+                changer = #{changer},
+            </if>
+            <if test="changeTime != null">
+                change_time = #{changeTime},
+            </if>
+            <if test="changeTag != null and changeTag != ''">
+                change_tag = #{changeTag},
+            </if>
+            <if test="deleteTag != null and deleteTag != ''">
+                delete_tag = #{deleteTag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from erp.supplier_file where id = #{id}
+    </delete>
+
+</mapper>
