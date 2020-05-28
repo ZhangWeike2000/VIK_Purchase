@@ -7,10 +7,10 @@ import java.io.Serializable;
  * (ReleaseCargo)实体类
  *
  * @author makejava
- * @since 2020-05-27 23:42:18
+ * @since 2020-05-28 09:24:08
  */
 public class ReleaseCargo implements Serializable {
-    private static final long serialVersionUID = 845878747850230075L;
+    private static final long serialVersionUID = -24409120700538897L;
     /**
     * 放货登记编号
     */

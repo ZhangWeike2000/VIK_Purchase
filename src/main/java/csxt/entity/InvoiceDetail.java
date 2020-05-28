@@ -6,10 +6,10 @@ import java.io.Serializable;
  * (InvoiceDetail)实体类
  *
  * @author makejava
- * @since 2020-05-27 23:43:26
+ * @since 2020-05-28 09:25:20
  */
 public class InvoiceDetail implements Serializable {
-    private static final long serialVersionUID = -20690302586205329L;
+    private static final long serialVersionUID = 994837740900850371L;
     /**
     * 发票登记明细编号
     */

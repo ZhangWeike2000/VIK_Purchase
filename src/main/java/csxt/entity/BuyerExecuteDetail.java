@@ -7,10 +7,10 @@ import java.io.Serializable;
  * (BuyerExecuteDetail)实体类
  *
  * @author makejava
- * @since 2020-05-27 23:41:46
+ * @since 2020-05-28 09:22:38
  */
 public class BuyerExecuteDetail implements Serializable {
-    private static final long serialVersionUID = -69008812986552482L;
+    private static final long serialVersionUID = -59486712862926632L;
     /**
     * 采购执行明细单编号
     */
