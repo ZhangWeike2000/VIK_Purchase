@@ -21,27 +21,10 @@ public class SupplierRankServiceImpl implements SupplierRankService {
     @Resource
     private SupplierRankDao supplierRankDao;
 
-    /**
-     * 通过ID查询单条数据
-     *
-     * @param id 主键
-     * @return 实例对象
-     */
-    @Override
-    public SupplierRank queryById(Integer id) {
-        return this.supplierRankDao.queryById(id);
-    }
 
-    /**
-     * 查询多条数据
-     *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
     @Override
-    public List<SupplierRank> queryAllByLimit(int offset, int limit) {
-        return this.supplierRankDao.queryAllByLimit(offset, limit);
+    public List<SupplierRank> queryAll(SupplierRank supplierRank) {
+        return supplierRankDao.queryAll(supplierRank);
     }
 
     /**
@@ -56,17 +39,7 @@ public class SupplierRankServiceImpl implements SupplierRankService {
         return supplierRank;
     }
 
-    /**
-     * 修改数据
-     *
-     * @param supplierRank 实例对象
-     * @return 实例对象
-     */
-    @Override
-    public SupplierRank update(SupplierRank supplierRank) {
-        this.supplierRankDao.update(supplierRank);
-        return this.queryById(supplierRank.getId());
-    }
+
 
     /**
      * 通过主键删除数据
@@ -75,7 +48,9 @@ public class SupplierRankServiceImpl implements SupplierRankService {
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer id) {
-        return this.supplierRankDao.deleteById(id) > 0;
+    public void deleteById(Integer [] id) {
+        for (Integer integer : id) {
+            this.supplierRankDao.deleteById(integer);
+        }
     }
 }

@@ -1,10 +1,13 @@
 package csxt.jyx.controller;
 
 import csxt.entity.SupplierArea;
+import csxt.entity.SupplierRank;
 import csxt.jyx.service.SupplierAreaService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (SupplierArea)表控制层
@@ -13,6 +16,7 @@ import javax.annotation.Resource;
  * @since 2020-05-28 08:43:35
  */
 @RestController
+@CrossOrigin
 @RequestMapping("supplierArea")
 public class SupplierAreaController {
     /**
@@ -22,14 +26,26 @@ public class SupplierAreaController {
     private SupplierAreaService supplierAreaService;
 
     /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
+     * 添加供应商地址
+     * @param supplierArea
+     * @return
      */
-    @GetMapping("selectOne/{id}")
-    public SupplierArea selectOne(@PathVariable("id") Integer id) {
-        return this.supplierAreaService.queryById(id);
+    @PostMapping("addSupplierArea")
+    public SupplierArea insert(@RequestBody SupplierArea supplierArea) {
+        this.supplierAreaService.insert(supplierArea);
+        return supplierArea;
     }
 
+    /**
+     * 查询供应商地址
+     * @return
+     */
+    @GetMapping("getAll")
+    public List<SupplierArea> queryAll(){
+        return supplierAreaService.queryAll(null);
+    }
+    @DeleteMapping("deleteById")
+    public void deleteById(@RequestBody List<Integer> ids){
+        supplierAreaService.deleteById(ids);
+    }
 }

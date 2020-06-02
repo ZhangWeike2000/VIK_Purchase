@@ -1,6 +1,5 @@
 package csxt.entity;
 
-import java.util.Date;
 import java.io.Serializable;
 
 /**
@@ -178,7 +177,8 @@ public class SupplierFile implements Serializable {
     /**
     * 登记时间
     */
-    private Date registerTime;
+    //@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private String registerTime;
     /**
     * 采购人编号
     */
@@ -194,7 +194,8 @@ public class SupplierFile implements Serializable {
     /**
     * 复核时间
     */
-    private Date checkTime;
+    //@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private String checkTime;
     /**
     * 审核标志
     */
@@ -206,7 +207,8 @@ public class SupplierFile implements Serializable {
     /**
     * 变更时间
     */
-    private Date changeTime;
+    //@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    private String changeTime;
     /**
     * 变更标志
     */
@@ -545,11 +547,11 @@ public class SupplierFile implements Serializable {
         this.register = register;
     }
 
-    public Date getRegisterTime() {
+    public String getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Date registerTime) {
+    public void setRegisterTime(String registerTime) {
         this.registerTime = registerTime;
     }
 
@@ -577,11 +579,11 @@ public class SupplierFile implements Serializable {
         this.checker = checker;
     }
 
-    public Date getCheckTime() {
+    public String getCheckTime() {
         return checkTime;
     }
 
-    public void setCheckTime(Date checkTime) {
+    public void setCheckTime(String checkTime) {
         this.checkTime = checkTime;
     }
 
@@ -601,11 +603,11 @@ public class SupplierFile implements Serializable {
         this.changer = changer;
     }
 
-    public Date getChangeTime() {
+    public String getChangeTime() {
         return changeTime;
     }
 
-    public void setChangeTime(Date changeTime) {
+    public void setChangeTime(String changeTime) {
         this.changeTime = changeTime;
     }
 

@@ -20,30 +20,6 @@ import java.util.List;
 public class SupplierAreaServiceImpl implements SupplierAreaService {
     @Resource
     private SupplierAreaDao supplierAreaDao;
-
-    /**
-     * 通过ID查询单条数据
-     *
-     * @param id 主键
-     * @return 实例对象
-     */
-    @Override
-    public SupplierArea queryById(Integer id) {
-        return this.supplierAreaDao.queryById(id);
-    }
-
-    /**
-     * 查询多条数据
-     *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
-    @Override
-    public List<SupplierArea> queryAllByLimit(int offset, int limit) {
-        return this.supplierAreaDao.queryAllByLimit(offset, limit);
-    }
-
     /**
      * 新增数据
      *
@@ -56,26 +32,22 @@ public class SupplierAreaServiceImpl implements SupplierAreaService {
         return supplierArea;
     }
 
-    /**
-     * 修改数据
-     *
-     * @param supplierArea 实例对象
-     * @return 实例对象
-     */
-    @Override
-    public SupplierArea update(SupplierArea supplierArea) {
-        this.supplierAreaDao.update(supplierArea);
-        return this.queryById(supplierArea.getId());
-    }
 
     /**
      * 通过主键删除数据
      *
-     * @param id 主键
+     * @param ids 主键
      * @return 是否成功
      */
     @Override
-    public boolean deleteById(Integer id) {
-        return this.supplierAreaDao.deleteById(id) > 0;
+    public void deleteById(List<Integer> ids) {
+        for (Integer id : ids) {
+            supplierAreaDao.deleteById(id);
+        }
+    }
+
+    @Override
+    public List<SupplierArea> queryAll(SupplierArea supplierArea) {
+        return this.supplierAreaDao.queryAll(supplierArea);
     }
 }

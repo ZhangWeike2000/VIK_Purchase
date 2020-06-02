@@ -1,5 +1,7 @@
 package csxt.jyx.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import csxt.entity.SupplierFile;
 import csxt.jyx.dao.SupplierFileDao;
 import csxt.jyx.service.SupplierFileService;
@@ -78,4 +80,18 @@ public class SupplierFileServiceImpl implements SupplierFileService {
     public boolean deleteById(Integer id) {
         return this.supplierFileDao.deleteById(id) > 0;
     }
+
+    @Override
+    public PageInfo<SupplierFile> getAll(Integer currNo, Integer pageSize) {
+        PageHelper.startPage(currNo,pageSize);
+        PageInfo pageInfo=new PageInfo(this.supplierFileDao.queryAll());
+        return pageInfo;
+    }
+
+    @Override
+    public List<SupplierFile> queryAll() {
+        return this.supplierFileDao.queryAll();
+    }
+
+
 }

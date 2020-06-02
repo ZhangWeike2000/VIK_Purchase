@@ -1,6 +1,8 @@
 package csxt.jyx.service;
 
+import com.github.pagehelper.PageInfo;
 import csxt.entity.SupplierFile;
+
 import java.util.List;
 
 /**
@@ -51,5 +53,12 @@ public interface SupplierFileService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
+    /**
+     * 通过实体作为筛选条件查询
+     *
+     * @return 对象列表
+     */
+    PageInfo<SupplierFile> getAll(Integer currNo, Integer pageSize);
+    List<SupplierFile> queryAll();
 
 }

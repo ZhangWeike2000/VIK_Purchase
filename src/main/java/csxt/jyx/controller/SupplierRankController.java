@@ -5,6 +5,7 @@ import csxt.jyx.service.SupplierRankService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (SupplierRank)表控制层
@@ -13,6 +14,7 @@ import javax.annotation.Resource;
  * @since 2020-05-28 08:39:15
  */
 @RestController
+@CrossOrigin
 @RequestMapping("supplierRank")
 public class SupplierRankController {
     /**
@@ -22,14 +24,35 @@ public class SupplierRankController {
     private SupplierRankService supplierRankService;
 
     /**
-     * 通过主键查询单条数据
+     * 通过实体作为筛选条件查询
      *
-     * @param id 主键
-     * @return 单条数据
+     *
+     * @return 对象列表
      */
-    @GetMapping("selectOne/{id}")
-    public SupplierRank selectOne(@PathVariable("id") Integer id) {
-        return this.supplierRankService.queryById(id);
+    @GetMapping("getAll")
+    public List<SupplierRank> queryAll() {
+        return supplierRankService.queryAll(null);
     }
 
+    /**
+     * 新增数据
+     *
+     * @param supplierRank 实例对象
+     * @return 影响行数
+     */
+    @PostMapping("addSr")
+    public SupplierRank insert(@RequestBody SupplierRank supplierRank) {
+        return supplierRankService.insert(supplierRank);
+    }
+
+    /**
+     * 通过主键删除数据
+     *
+     * @param id 主键
+     * @return 影响行数
+     */
+    @DeleteMapping("deleteById")
+    public void deleteById(@RequestBody Integer[] id) {
+        supplierRankService.deleteById(id);
+    }
 }
