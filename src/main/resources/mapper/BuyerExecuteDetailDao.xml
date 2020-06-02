@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="csxt.lsy.dao.BuyerExecuteDetailDao">
+
+    <resultMap type="csxt.entity.BuyerExecuteDetail" id="BuyerExecuteDetailMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="buyerExecuteId" column="buyer_execute_id" jdbcType="INTEGER"/>
+        <result property="supplierId" column="supplier_id" jdbcType="INTEGER"/>
+        <result property="supplierName" column="supplier_name" jdbcType="VARCHAR"/>
+        <result property="contacts" column="contacts" jdbcType="VARCHAR"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="INTEGER"/>
+        <result property="amount" column="amount" jdbcType="INTEGER"/>
+        <result property="subtotal" column="subtotal" jdbcType="INTEGER"/>
+        <result property="paymentTime" column="payment_time" jdbcType="TIMESTAMP"/>
+        <result property="askSupperTime" column="ask_supper_time" jdbcType="TIMESTAMP"/>
+        <result property="comment" column="COMMENT" jdbcType="VARCHAR"/>
+        <result property="thenAmount" column="then_amount" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BuyerExecuteDetailMap">
+        select
+          id, buyer_execute_id, supper_id, supper_name, contacts, phone, price, amount, subtotal, payment_time, ask_supper_time, COMMENT, then_amount
+        from erp.buyer_execute_detail
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BuyerExecuteDetailMap">
+        select
+          id, buyer_execute_id, supper_id, supper_name, contacts, phone, price, amount, subtotal, payment_time, ask_supper_time, COMMENT, then_amount
+        from erp.buyer_execute_detail
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BuyerExecuteDetailMap">
+        select
+          id, buyer_execute_id, supper_id, supper_name, contacts, phone, price, amount, subtotal, payment_time, ask_supper_time, COMMENT, then_amount
+        from erp.buyer_execute_detail
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="buyerExecuteId != null">
+                and buyer_execute_id = #{buyerExecuteId}
+            </if>
+            <if test="supperId != null">
+                and supper_id = #{supperId}
+            </if>
+            <if test="supperName != null and supperName != ''">
+                and supper_name = #{supperName}
+            </if>
+            <if test="contacts != null and contacts != ''">
+                and contacts = #{contacts}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="amount != null">
+                and amount = #{amount}
+            </if>
+            <if test="subtotal != null">
+                and subtotal = #{subtotal}
+            </if>
+            <if test="paymentTime != null">
+                and payment_time = #{paymentTime}
+            </if>
+            <if test="askSupperTime != null">
+                and ask_supper_time = #{askSupperTime}
+            </if>
+            <if test="comment != null and comment != ''">
+                and COMMENT = #{comment}
+            </if>
+            <if test="thenAmount != null">
+                and then_amount = #{thenAmount}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into erp.buyer_execute_detail(buyer_execute_id, supper_id, supper_name, contacts, phone, price, amount, subtotal, payment_time, ask_supper_time, COMMENT, then_amount)
+        values (#{buyerExecuteId}, #{supperId}, #{supperName}, #{contacts}, #{phone}, #{price}, #{amount}, #{subtotal}, #{paymentTime}, #{askSupperTime}, #{comment}, #{thenAmount})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update erp.buyer_execute_detail
+        <set>
+            <if test="buyerExecuteId != null">
+                buyer_execute_id = #{buyerExecuteId},
+            </if>
+            <if test="supperId != null">
+                supper_id = #{supperId},
+            </if>
+            <if test="supperName != null and supperName != ''">
+                supper_name = #{supperName},
+            </if>
+            <if test="contacts != null and contacts != ''">
+                contacts = #{contacts},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="amount != null">
+                amount = #{amount},
+            </if>
+            <if test="subtotal != null">
+                subtotal = #{subtotal},
+            </if>
+            <if test="paymentTime != null">
+                payment_time = #{paymentTime},
+            </if>
+            <if test="askSupperTime != null">
+                ask_supper_time = #{askSupperTime},
+            </if>
+            <if test="comment != null and comment != ''">
+                COMMENT = #{comment},
+            </if>
+            <if test="thenAmount != null">
+                then_amount = #{thenAmount},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from erp.buyer_execute_detail where id = #{id}
+    </delete>
+
+</mapper>

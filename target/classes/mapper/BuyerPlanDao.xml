@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="csxt.lsy.dao.BuyerPlanDao">
+
+    <resultMap type="csxt.entity.BuyerPlan" id="BuyerPlanMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="buyerReason" column="Buyer_reason" jdbcType="VARCHAR"/>
+        <result property="supplyTime" column="Supply_time" jdbcType="TIMESTAMP"/>
+        <result property="planner" column="planner" jdbcType="VARCHAR"/>
+        <result property="sumAmount" column="sum_amount" jdbcType="INTEGER"/>
+        <result property="sumMoney" column="sum_money" jdbcType="INTEGER"/>
+        <result property="register" column="register" jdbcType="VARCHAR"/>
+        <result property="registerTime" column="register_time" jdbcType="TIMESTAMP"/>
+        <result property="checker" column="checker" jdbcType="VARCHAR"/>
+        <result property="checkTime" column="check_time" jdbcType="TIMESTAMP"/>
+        <result property="comment" column="COMMENT" jdbcType="VARCHAR"/>
+        <result property="checkTag" column="check_tag" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BuyerPlanMap">
+        select
+          id, Buyer_reason, Supply_time, planner, sum_amount, sum_money, register, register_time, checker, check_time, COMMENT, check_tag
+        from erp.buyer_plan
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BuyerPlanMap">
+        select
+          id, Buyer_reason, Supply_time, planner, sum_amount, sum_money, register, register_time, checker, check_time, COMMENT, check_tag
+        from erp.buyer_plan
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BuyerPlanMap">
+        select
+          id, Buyer_reason, Supply_time, planner, sum_amount, sum_money, register, register_time, checker, check_time, COMMENT, check_tag
+        from erp.buyer_plan
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="buyerReason != null and buyerReason != ''">
+                and Buyer_reason = #{buyerReason}
+            </if>
+            <if test="supplyTime != null">
+                and Supply_time = #{supplyTime}
+            </if>
+            <if test="planner != null and planner != ''">
+                and planner = #{planner}
+            </if>
+            <if test="sumAmount != null">
+                and sum_amount = #{sumAmount}
+            </if>
+            <if test="sumMoney != null">
+                and sum_money = #{sumMoney}
+            </if>
+            <if test="register != null and register != ''">
+                and register = #{register}
+            </if>
+            <if test="registerTime != null">
+                and register_time = #{registerTime}
+            </if>
+            <if test="checker != null and checker != ''">
+                and checker = #{checker}
+            </if>
+            <if test="checkTime != null">
+                and check_time = #{checkTime}
+            </if>
+            <if test="comment != null and comment != ''">
+                and COMMENT = #{comment}
+            </if>
+            <if test="checkTag != null and checkTag != ''">
+                and check_tag = #{checkTag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into erp.buyer_plan(Buyer_reason, Supply_time, planner, sum_amount, sum_money, register, register_time, checker, check_time, COMMENT, check_tag)
+        values (#{buyerReason}, #{supplyTime}, #{planner}, #{sumAmount}, #{sumMoney}, #{register}, #{registerTime}, #{checker}, #{checkTime}, #{comment}, #{checkTag})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update erp.buyer_plan
+        <set>
+            <if test="buyerReason != null and buyerReason != ''">
+                Buyer_reason = #{buyerReason},
+            </if>
+            <if test="supplyTime != null">
+                Supply_time = #{supplyTime},
+            </if>
+            <if test="planner != null and planner != ''">
+                planner = #{planner},
+            </if>
+            <if test="sumAmount != null">
+                sum_amount = #{sumAmount},
+            </if>
+            <if test="sumMoney != null">
+                sum_money = #{sumMoney},
+            </if>
+            <if test="register != null and register != ''">
+                register = #{register},
+            </if>
+            <if test="registerTime != null">
+                register_time = #{registerTime},
+            </if>
+            <if test="checker != null and checker != ''">
+                checker = #{checker},
+            </if>
+            <if test="checkTime != null">
+                check_time = #{checkTime},
+            </if>
+            <if test="comment != null and comment != ''">
+                COMMENT = #{comment},
+            </if>
+            <if test="checkTag != null and checkTag != ''">
+                check_tag = #{checkTag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from erp.buyer_plan where id = #{id}
+    </delete>
+
+</mapper>
