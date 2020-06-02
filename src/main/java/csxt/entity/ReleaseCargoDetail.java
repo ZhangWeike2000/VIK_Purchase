@@ -21,7 +21,7 @@ public class ReleaseCargoDetail implements Serializable {
     /**
     * 产品编号
     */
-    private Integer productId;
+    private String productId;
     /**
     * 产品名称
     */
@@ -45,11 +45,11 @@ public class ReleaseCargoDetail implements Serializable {
     /**
     * 单位
     */
-    private String unit;
+    private String amountUnit;
     /**
     * 单价(元)
     */
-    private Integer price;
+    private Integer realCostPrice;
     /**
     * 放货小计(元)
     */
@@ -76,11 +76,11 @@ public class ReleaseCargoDetail implements Serializable {
         this.releaseCargoId = releaseCargoId;
     }
 
-    public Integer getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(Integer productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
@@ -124,20 +124,20 @@ public class ReleaseCargoDetail implements Serializable {
         this.qualifiedNumber = qualifiedNumber;
     }
 
-    public String getUnit() {
-        return unit;
+    public String getAmountUnit() {
+        return amountUnit;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
+    public void setAmountUnit(String amountUnit) {
+        this.amountUnit = amountUnit;
     }
 
-    public Integer getPrice() {
-        return price;
+    public Integer getRealCostPrice() {
+        return realCostPrice;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setRealCostPrice(Integer realCostPrice) {
+        this.realCostPrice = realCostPrice;
     }
 
     public Integer getPutSubtotal() {
@@ -156,4 +156,21 @@ public class ReleaseCargoDetail implements Serializable {
         this.qualifiedSubtotal = qualifiedSubtotal;
     }
 
+    @Override
+    public String toString() {
+        return "ReleaseCargoDetail{" +
+                "id=" + id +
+                ", releaseCargoId=" + releaseCargoId +
+                ", productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", describe='" + describe + '\'' +
+                ", putNumber=" + putNumber +
+                ", needNumber=" + needNumber +
+                ", qualifiedNumber=" + qualifiedNumber +
+                ", amountUnit='" + amountUnit + '\'' +
+                ", realCostPrice=" + realCostPrice +
+                ", putSubtotal=" + putSubtotal +
+                ", qualifiedSubtotal=" + qualifiedSubtotal +
+                '}';
+    }
 }

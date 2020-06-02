@@ -1,5 +1,7 @@
 package csxt.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -22,11 +24,11 @@ public class ReleaseCargo implements Serializable {
     /**
     * 供应商编号
     */
-    private Integer supperId;
+    private Integer supplierId;
     /**
     * 供应商名称
     */
-    private String supperName;
+    private String supplierName;
     /**
     * 采购人编号
     */
@@ -46,6 +48,7 @@ public class ReleaseCargo implements Serializable {
     /**
     * 归还时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date returnTime;
     /**
     * 总件数
@@ -70,6 +73,7 @@ public class ReleaseCargo implements Serializable {
     /**
     * 登记时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date registerTime;
     /**
     * 备注
@@ -82,6 +86,7 @@ public class ReleaseCargo implements Serializable {
     /**
     * 审核时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date checkTime;
     /**
     * 审核标志
@@ -113,20 +118,20 @@ public class ReleaseCargo implements Serializable {
         this.buyerPlanId = buyerPlanId;
     }
 
-    public Integer getSupperId() {
-        return supperId;
+    public Integer getSupplierId() {
+        return supplierId;
     }
 
-    public void setSupperId(Integer supperId) {
-        this.supperId = supperId;
+    public void setSupplierId(Integer supplierId) {
+        this.supplierId = supplierId;
     }
 
-    public String getSupperName() {
-        return supperName;
+    public String getSupplierName() {
+        return supplierName;
     }
 
-    public void setSupperName(String supperName) {
-        this.supperName = supperName;
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public Integer getBuyerNumber() {

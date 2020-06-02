@@ -22,7 +22,7 @@ public class Invoice implements Serializable {
     /**
     * 产品编号
     */
-    private Integer productId;
+    private String productId;
     /**
     * 产品名称
     */
@@ -73,11 +73,11 @@ public class Invoice implements Serializable {
         this.buyerExecuteId = buyerExecuteId;
     }
 
-    public Integer getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(Integer productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 

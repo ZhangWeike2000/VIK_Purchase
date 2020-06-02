@@ -18,7 +18,7 @@ public class SupplierRecommend implements Serializable {
     /**
     * 产品编号
     */
-    private Integer productId;
+    private String productId;
     /**
     * 产品名称
     */
@@ -73,11 +73,11 @@ public class SupplierRecommend implements Serializable {
         this.id = id;
     }
 
-    public Integer getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(Integer productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
