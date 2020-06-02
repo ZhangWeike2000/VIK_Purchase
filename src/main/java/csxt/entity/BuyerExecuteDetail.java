@@ -22,11 +22,11 @@ public class BuyerExecuteDetail implements Serializable {
     /**
     * 供应商编号
     */
-    private Integer supperId;
+    private Integer supplierId;
     /**
     * 供应商名称
     */
-    private String supperName;
+    private String supplierName;
     /**
     * 联系人
     */
@@ -81,20 +81,20 @@ public class BuyerExecuteDetail implements Serializable {
         this.buyerExecuteId = buyerExecuteId;
     }
 
-    public Integer getSupperId() {
-        return supperId;
+    public Integer getSupplierId() {
+        return supplierId;
     }
 
-    public void setSupperId(Integer supperId) {
-        this.supperId = supperId;
+    public void setSupplierId(Integer supplierId) {
+        this.supplierId = supplierId;
     }
 
-    public String getSupperName() {
-        return supperName;
+    public String getSupplierName() {
+        return supplierName;
     }
 
-    public void setSupperName(String supperName) {
-        this.supperName = supperName;
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
     }
 
     public String getContacts() {
