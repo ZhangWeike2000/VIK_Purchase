@@ -3,6 +3,7 @@ package csxt.jyx.service.impl;
 import csxt.entity.ContactReason;
 import csxt.jyx.dao.ContactReasonDao;
 import csxt.jyx.service.ContactReasonService;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

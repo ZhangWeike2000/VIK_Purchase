@@ -3,6 +3,8 @@ package csxt.jyx.dao;
 import csxt.entity.ContactReason;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 /**
@@ -12,6 +14,7 @@ import java.util.List;
  * @since 2020-05-28 08:50:09
  */
 @Mapper
+@Component("contactReasonDao")
 public interface ContactReasonDao {
 
     /**

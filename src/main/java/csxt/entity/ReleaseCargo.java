@@ -18,6 +18,10 @@ public class ReleaseCargo implements Serializable {
     */
     private Integer id;
     /**
+     * 申请单编号
+     */
+    private String releaseCargoId;
+    /**
     * 采购执行单编号
     */
     private Integer buyerPlanId;
@@ -108,6 +112,14 @@ public class ReleaseCargo implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getReleaseCargoId() {
+        return releaseCargoId;
+    }
+
+    public void setReleaseCargoId(String releaseCargoId) {
+        this.releaseCargoId = releaseCargoId;
     }
 
     public Integer getBuyerPlanId() {

@@ -1,6 +1,7 @@
 package csxt.lsy.dao;
 
 import csxt.entity.BuyerExecuteDetail;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-05-28 10:46:55
  */
+@Mapper
 public interface BuyerExecuteDetailDao {
 
     /**

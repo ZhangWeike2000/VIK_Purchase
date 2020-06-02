@@ -55,6 +55,7 @@ public interface ReleaseCargoDao {
      * @return 执行单编号
      */
     public int selectExecuteById(@Param("productId") int productId,@Param("supplierId") int supplierId);
+
     /**
      * 新增放货登记并返回主键
      * @param releaseCargo 放货登记信息

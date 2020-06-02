@@ -1,5 +1,7 @@
 package csxt.entity;
 
+import org.springframework.context.annotation.Bean;
+
 import java.io.Serializable;
 
 /**

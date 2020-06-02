@@ -35,6 +35,7 @@ public class ReleaseCargoServiceImpl implements ReleaseCargoService{
     @Transactional
     @Override
     public Integer selectExecuteWhetherExist(int productId, int supplierId) {
+        //查询这个供应商有没有正在放货该产品，如果有返回已经放货的数量
         Integer sumNumber=releaseCargoDao.selectWhetherBePut(productId,supplierId);
         Integer number=releaseCargoDao.selectExecuteWhetherExist(productId,supplierId);
         if(sumNumber==null||sumNumber.toString()==""){
@@ -56,9 +57,9 @@ public class ReleaseCargoServiceImpl implements ReleaseCargoService{
     @Transactional
     @Override
     public void insertReleaseCargoAndDetails(ReleaseCargoDto releaseCargoDto) {
-        int number=releaseCargoDao.insertReleaseCargo(releaseCargoDto.getReleaseCargo());
+        releaseCargoDao.insertReleaseCargo(releaseCargoDto.getReleaseCargo());
         for (int i=0;i<releaseCargoDto.getReleaseCargoDetails().size();i++){
-            releaseCargoDto.getReleaseCargoDetails().get(i).setReleaseCargoId(number);
+            releaseCargoDto.getReleaseCargoDetails().get(i).setReleaseCargoId(releaseCargoDto.getReleaseCargo().getId());
         }
         releaseCargoDao.insertReleaseCargoDetails(releaseCargoDto.getReleaseCargoDetails());
     }
