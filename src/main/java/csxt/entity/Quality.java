@@ -16,6 +16,10 @@ public class Quality implements Serializable {
     */
     private Integer id;
     /**
+     * 采购执行单编号
+     */
+    private Integer buyerPlanId;
+    /**
     * 放货登记编号
     */
     private Integer releaseCargoId;
@@ -48,6 +52,15 @@ public class Quality implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Integer getBuyerPlanId() {
+        return buyerPlanId;
+    }
+
+    public void setBuyerPlanId(Integer buyerPlanId) {
+        this.buyerPlanId = buyerPlanId;
+    }
+
 
     public Integer getReleaseCargoId() {
         return releaseCargoId;

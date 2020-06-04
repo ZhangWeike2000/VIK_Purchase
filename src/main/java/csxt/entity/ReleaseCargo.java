@@ -282,4 +282,31 @@ public class ReleaseCargo implements Serializable {
         this.disposeTag = disposeTag;
     }
 
+    @Override
+    public String toString() {
+        return "ReleaseCargo{" +
+                "id=" + id +
+                ", releaseCargoId='" + releaseCargoId + '\'' +
+                ", buyerPlanId=" + buyerPlanId +
+                ", supplierId=" + supplierId +
+                ", supplierName='" + supplierName + '\'' +
+                ", buyerNumber=" + buyerNumber +
+                ", buyer='" + buyer + '\'' +
+                ", releasePerson='" + releasePerson + '\'' +
+                ", returns='" + returns + '\'' +
+                ", returnTime=" + returnTime +
+                ", sumNumber=" + sumNumber +
+                ", sumMoney=" + sumMoney +
+                ", qualifiedNumber=" + qualifiedNumber +
+                ", qualifiedMoney=" + qualifiedMoney +
+                ", register='" + register + '\'' +
+                ", registerTime=" + registerTime +
+                ", comment='" + comment + '\'' +
+                ", checker='" + checker + '\'' +
+                ", checkTime=" + checkTime +
+                ", checkTag='" + checkTag + '\'' +
+                ", qualityTag='" + qualityTag + '\'' +
+                ", disposeTag='" + disposeTag + '\'' +
+                '}';
+    }
 }

@@ -2,6 +2,7 @@ package csxt.lwm.dao;
 
 import csxt.entity.ReleaseCargo;
 import csxt.entity.ReleaseCargoDetail;
+import csxt.lwm.dto.ReleaseCargoDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -32,4 +33,28 @@ public interface ReleaseCargoAuditDao {
      * @return 放货登记明细集合
      */
     public List<ReleaseCargoDetail> selectReleaseCargoDetailByParent(Integer releaseCargoId);
+
+    /**
+     * 审核放货登记信息
+     * @param releaseCargo 放货登记信息
+     */
+    public void releaseCargoRegRev(ReleaseCargo releaseCargo);
+
+    /**
+     * 审核放货登记明细信息
+     * @param releaseCargoDetail 放货登记明细
+     */
+    public void releaseCargoDetailRegRev(ReleaseCargoDetail releaseCargoDetail);
+
+    /**
+     *审核放货数量小于登记放货数量，修改执行单放货状态
+     * @param buyerPlanId 执行单编号
+     */
+    public void buyerExecuteUpdatePutTag(Integer buyerPlanId);
+
+    /**
+     * 复核不通过
+     * @param releaseCargo 放货登记信息
+     */
+    public void releaseCargoNotPass(ReleaseCargo releaseCargo);
 }

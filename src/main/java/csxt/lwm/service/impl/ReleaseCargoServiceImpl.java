@@ -37,6 +37,7 @@ public class ReleaseCargoServiceImpl implements ReleaseCargoService{
     public Integer selectExecuteWhetherExist(int productId, int supplierId) {
         //查询这个供应商有没有正在放货该产品，如果有返回已经放货的数量
         Integer sumNumber=releaseCargoDao.selectWhetherBePut(productId,supplierId);
+        //查询这个产品是否有执行单
         Integer number=releaseCargoDao.selectExecuteWhetherExist(productId,supplierId);
         if(sumNumber==null||sumNumber.toString()==""){
             if(number==null){

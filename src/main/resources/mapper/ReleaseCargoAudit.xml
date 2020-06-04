@@ -10,4 +10,16 @@
     <select id="selectReleaseCargoDetailByParent" resultType="csxt.entity.ReleaseCargoDetail" parameterType="integer">
         select * from release_cargo_detail where release_cargo_id=#{releaseCargoId}
     </select>
+    <update id="releaseCargoRegRev" parameterType="csxt.entity.ReleaseCargo">
+        update release_cargo set sum_number=#{sumNumber},comment=#{comment},checker=#{checker},check_time=#{checkTime},check_tag=#{checkTag},check_tag='R001-1' where id=#{id}
+    </update>
+    <update id="releaseCargoDetailRegRev" parameterType="csxt.entity.ReleaseCargoDetail">
+        update release_cargo_detail set put_number=#{putNumber},put_subtotal=real_cost_price*#{putNumber} where id=#{id}
+    </update>
+    <update id="buyerExecuteUpdatePutTag" parameterType="integer">
+        UPDATE buyer_execute SET put_tag='F001-2' where id=#{buyerPlanId}
+    </update>
+    <update id="releaseCargoNotPass" parameterType="csxt.entity.ReleaseCargo">
+        update release_cargo set check_tag='R001-2' where id=#{id}
+    </update>
 </mapper>

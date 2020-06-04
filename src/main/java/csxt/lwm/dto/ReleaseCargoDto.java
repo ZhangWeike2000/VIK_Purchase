@@ -32,4 +32,12 @@ public class ReleaseCargoDto {
     public void setReleaseCargoDetails(List<ReleaseCargoDetail> releaseCargoDetails) {
         this.releaseCargoDetails = releaseCargoDetails;
     }
+
+    @Override
+    public String toString() {
+        return "ReleaseCargoDto{" +
+                "releaseCargo=" + releaseCargo +
+                ", releaseCargoDetails=" + releaseCargoDetails +
+                '}';
+    }
 }

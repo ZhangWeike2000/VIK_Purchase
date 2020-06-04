@@ -18,11 +18,11 @@
     </select>
     <!--查询这个供应商是否有产品正在放货-->
     <select id="selectWhetherBePut" parameterType="int" resultType="integer">
-        SELECT sum_number FROM release_cargo
+        SELECT SUM(sum_number)  FROM release_cargo
         WHERE buyer_plan_id=(
         SELECT id FROM buyer_execute WHERE product_id=#{productId} AND put_tag='F001-2'
         AND id IN (SELECT buyer_execute_id FROM buyer_execute_detail WHERE supplier_id=#{supplierId})
-        )
+        )  AND check_tag!='R001-2'
     </select>
     <!--查询这个产品是否有执行单-->
     <select id="selectExecuteWhetherExist" parameterType="int" resultType="integer">
@@ -41,11 +41,11 @@
         insert into release_cargo (release_cargo_id,buyer_plan_id,supplier_id,supplier_name,buyer_number,buyer,release_person,`returns`,return_time,sum_number,sum_money,qualified_number,qualified_money,register,register_time,`COMMENT`,checker,check_time,check_tag,quality_tag,dispose_tag)
         value(CEILING(RAND()*10000+10000000000),#{buyerPlanId},#{supplierId},#{supplierName},#{buyerNumber},#{buyer},#{releasePerson},#{returns},#{returnTime},#{sumNumber},#{sumMoney},0,0,#{register},#{registerTime},#{comment},null,null,'R001-0','D001-0','D001-0')
     </insert>
-    <!--查询执行单编号-->
+    <!--新增放货登记明细信息-->
     <insert id="insertReleaseCargoDetails" parameterType="java.util.List">
         insert into release_cargo_detail (id,release_cargo_id,product_id,product_name,`DESCRIBE`,put_number,need_number,qualified_number,amount_unit,real_cost_price,put_subtotal,qualified_subtotal) values
         <foreach item="item" index="index" collection="list" separator=",">
-            (null,#{item.releaseCargoId},#{item.productId},#{item.productName},#{item.describe},#{item.needNumber},#{item.needNumber},0,#{item.amountUnit},#{item.realCostPrice},#{item.putSubtotal},0)
+            (null,#{item.releaseCargoId},#{item.productId},#{item.productName},#{item.describe},0,#{item.needNumber},0,#{item.amountUnit},#{item.realCostPrice},0,0)
         </foreach>
     </insert>
     <!--修改执行单的状态-->
