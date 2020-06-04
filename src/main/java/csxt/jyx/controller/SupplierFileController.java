@@ -28,7 +28,17 @@ public class SupplierFileController {
      */
     @Resource
     private SupplierFileService supplierFileService;
+    /**
+     * 修改数据
+     *
+     * @param supplierFile 实例对象
+     * @return 影响行数
+     */
+    @PutMapping("updateById")
+    public void updateById(@RequestBody SupplierFile supplierFile){
 
+        supplierFileService.update(supplierFile);
+    }
     /**
      * 通过主键查询单条数据
      *
@@ -63,6 +73,7 @@ public class SupplierFileController {
      */
     @PostMapping("addSupplierFile")
     public SupplierFile insert(@RequestBody SupplierFile supplierFile) {
+
         return supplierFileService.insert(supplierFile);
     }
 
