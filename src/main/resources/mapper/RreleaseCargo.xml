@@ -37,8 +37,9 @@
         AND supplier_id=#{supplierId}
     </select>
     <!--新增放货登记并返回主键-->
-    <insert id="insertReleaseCargo" parameterType="csxt.entity.ReleaseCargo" keyColumn="id" useGeneratedKeys="true" keyProperty="id">
-        insert into release_cargo (id,buyer_plan_id,supplier_id,suppselectExecuteByIderNumber},#{buyer},#{releasePerson},#{returns},#{returnTime},#{sumNumber},#{sumMoney},null,null,#{register},#{registerTime},#{comment},null,null,'R001-0','D001-0','D001-0')
+    <insert id="insertReleaseCargo" parameterType="csxt.entity.ReleaseCargo" useGeneratedKeys="true" keyProperty="id">
+        insert into release_cargo (release_cargo_id,buyer_plan_id,supplier_id,supplier_name,buyer_number,buyer,release_person,`returns`,return_time,sum_number,sum_money,qualified_number,qualified_money,register,register_time,`COMMENT`,checker,check_time,check_tag,quality_tag,dispose_tag)
+        value(CEILING(RAND()*10000+10000000000),#{buyerPlanId},#{supplierId},#{supplierName},#{buyerNumber},#{buyer},#{releasePerson},#{returns},#{returnTime},#{sumNumber},#{sumMoney},0,0,#{register},#{registerTime},#{comment},null,null,'R001-0','D001-0','D001-0')
     </insert>
     <!--查询执行单编号-->
     <insert id="insertReleaseCargoDetails" parameterType="java.util.List">
