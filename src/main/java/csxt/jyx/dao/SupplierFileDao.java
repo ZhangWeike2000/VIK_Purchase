@@ -37,7 +37,7 @@ public interface SupplierFileDao {
      *
      * @return 对象列表
      */
-    List<SupplierFile> queryAll();
+    List<SupplierFile> queryAll(String tag);
 
     /**
      * 新增数据

@@ -2,11 +2,11 @@ server:
   port: 9527
 
 spring:
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-  thymeleaf:
-    cache: false
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -64,6 +64,7 @@ spring:
           statement-log-enabled: false
         commons-log:
           statement-execute-after-log-enabled: false
+
 
 mybatis:
   mapperLocations: classpath:mapper/*.xml

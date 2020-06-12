@@ -73,10 +73,15 @@
     </select>
 
     <!--通过实体作为筛选条件查询-->
-    <select id="queryAll" resultMap="SupplierFileMap">
+    <select id="queryAll" resultMap="SupplierFileMap" parameterType="String">
         select
           id, supplier_name, address, first_kind_id, first_kind_name, second_kind_id, second_kind_name, third_kind_id, third_kind_name, former_name, bank_type, bank_account, url, phone, fax, postal_code, area_id, area_name, rank_id, rank_name, first_contacts, first_department, first_duty, first_office_phone, first_phone, first_family_phone, first_email, first_sex, second_contacts, second_department, second_duty, second_office_phone, second_phone, second_family_phone, second_email, second_sex, billing_information, supply_gather, recommend_gather, register_number, register, register_time, buyer_number, buyer, checker, check_time, check_tag, changer, change_time, change_tag, delete_tag
-        from erp.supplier_file where check_tag="R001-0"
+        from erp.supplier_file
+        <where>
+            <if test="tag != null and tag != ''">
+                check_tag=#{tag}
+            </if>
+        </where>
        <!-- <where>
             <if test="id != null">
                 and id = #{id}

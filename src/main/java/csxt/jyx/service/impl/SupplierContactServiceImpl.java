@@ -78,4 +78,9 @@ public class SupplierContactServiceImpl implements SupplierContactService {
     public boolean deleteById(Integer id) {
         return this.supplierContactDao.deleteById(id) > 0;
     }
+
+    @Override
+    public List<SupplierContact> queryAll(String tag) {
+        return supplierContactDao.queryAll(tag);
+    }
 }

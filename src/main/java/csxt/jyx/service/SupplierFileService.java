@@ -58,7 +58,7 @@ public interface SupplierFileService {
      *
      * @return 对象列表
      */
-    PageInfo<SupplierFile> getAll(Integer currNo, Integer pageSize);
-    List<SupplierFile> queryAll();
+    PageInfo<SupplierFile> getAll(Integer currNo, Integer pageSize,String tag);
+    List<SupplierFile> queryAll(String tag);
 
 }
