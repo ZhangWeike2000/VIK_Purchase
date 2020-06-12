@@ -35,9 +35,22 @@ public class BuyerPlanDetail implements Serializable {
     */
     private Integer amount;
     /**
+     * 单价
+     */
+    private Integer realcostPrice;
+
+    public Integer getRealcostPrice() {
+        return realcostPrice;
+    }
+
+    public void setRealcostPrice(Integer realcostPrice) {
+        this.realcostPrice = realcostPrice;
+    }
+
+    /**
     * 单位
     */
-    private String unit;
+    private String amountunit;
     /**
     * 小计
     */
@@ -45,7 +58,7 @@ public class BuyerPlanDetail implements Serializable {
     /**
     * 出库单编号集合
     */
-    private String gather;
+    private Integer gather;
 
 
     public Integer getId() {
@@ -96,12 +109,12 @@ public class BuyerPlanDetail implements Serializable {
         this.amount = amount;
     }
 
-    public String getUnit() {
-        return unit;
+    public String getAmountunit() {
+        return amountunit;
     }
 
-    public void setUnit(String unit) {
-        this.unit = unit;
+    public void setAmountunit(String amountunit) {
+        this.amountunit = amountunit;
     }
 
     public Integer getSubtotal() {
@@ -112,12 +125,11 @@ public class BuyerPlanDetail implements Serializable {
         this.subtotal = subtotal;
     }
 
-    public String getGather() {
+    public Integer getGather() {
         return gather;
     }
 
-    public void setGather(String gather) {
+    public void setGather(Integer gather) {
         this.gather = gather;
     }
-
 }

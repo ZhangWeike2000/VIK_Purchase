@@ -80,6 +80,7 @@ public class ReleaseCargoController {
     @PostMapping("/registerReleaseCargo")
     public void registerReleaseCargo(@RequestBody ReleaseCargoDto releaseCargoDto){
         releaseCargoService.insertReleaseCargoAndDetails(releaseCargoDto);
+
     }
 
     /**

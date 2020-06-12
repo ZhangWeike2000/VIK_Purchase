@@ -1,6 +1,9 @@
 package csxt.lsy.service;
 
 import csxt.entity.BuyerPlan;
+import csxt.entity.DFile;
+import csxt.lsy.dto.UpdateDto;
+
 import java.util.List;
 
 /**
@@ -22,11 +25,10 @@ public interface BuyerPlanService {
     /**
      * 查询多条数据
      *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param
      * @return 对象列表
      */
-    List<BuyerPlan> queryAllByLimit(int offset, int limit);
+    public List<DFile> selectdfile();
 
     /**
      * 新增数据
@@ -34,7 +36,7 @@ public interface BuyerPlanService {
      * @param buyerPlan 实例对象
      * @return 实例对象
      */
-    BuyerPlan insert(BuyerPlan buyerPlan);
+    int addBPay(BuyerPlan buyerPlan);
 
     /**
      * 修改数据
@@ -51,5 +53,26 @@ public interface BuyerPlanService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
+
+    /**
+     * 查询未审核的
+     *
+     * @return 对象列表
+     */
+    public List<BuyerPlan> getBPay();
+
+    /**
+     * 查询已审核的
+     *
+     * @return 对象列表
+     */
+    public List<BuyerPlan> getBPay2();
+
+    /**
+     * 修改审核标志为已审核
+     *
+     * @return 对象列表
+     */
+    public int updateBPay(UpdateDto updateDto);
 
 }

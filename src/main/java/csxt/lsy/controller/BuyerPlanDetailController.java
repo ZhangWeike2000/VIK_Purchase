@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * @since 2020-05-28 10:14:00
  */
 @RestController
-@RequestMapping("buyerPlanDetail")
+@CrossOrigin
 public class BuyerPlanDetailController {
     /**
      * 服务对象

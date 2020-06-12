@@ -1,8 +1,12 @@
 package csxt.lsy.dao;
 
 import csxt.entity.BuyerPlan;
+import csxt.entity.DFile;
+import csxt.lsy.dto.UpdateDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 /**
@@ -12,6 +16,7 @@ import java.util.List;
  * @since 2020-05-28 09:42:20
  */
 @Mapper
+@Component("BuyerPlanDao")
 public interface BuyerPlanDao {
 
     /**
@@ -21,6 +26,8 @@ public interface BuyerPlanDao {
      * @return 实例对象
      */
     BuyerPlan queryById(Integer id);
+
+
 
     /**
      * 查询指定行数据
@@ -33,20 +40,34 @@ public interface BuyerPlanDao {
 
 
     /**
-     * 通过实体作为筛选条件查询
+     * 查询所有物料
      *
-     * @param buyerPlan 实例对象
      * @return 对象列表
      */
-    List<BuyerPlan> queryAll(BuyerPlan buyerPlan);
+    public List<DFile> selectdfile();
 
     /**
-     * 新增数据
+     * 查询未审核的
+     *
+     * @return 对象列表
+     */
+    public List<BuyerPlan> getBPay();
+
+    /**
+     * 查询已审核的
+     *
+     * @return 对象列表
+     */
+    public List<BuyerPlan> getBPay2();
+
+
+    /**
+     * 往采购计划表添加数据
      *
      * @param buyerPlan 实例对象
      * @return 影响行数
      */
-    int insert(BuyerPlan buyerPlan);
+    int addBPay(BuyerPlan buyerPlan);
 
     /**
      * 修改数据
@@ -64,4 +85,11 @@ public interface BuyerPlanDao {
      */
     int deleteById(Integer id);
 
+
+    //修改审核标志为已审核
+    int updateBPay(UpdateDto updateDto);
+    int updateBPay2(UpdateDto updateDto);
+    int updateBPay3(UpdateDto updateDto);
+    //根据id查询未审核的
+    BuyerPlan getBPayById(Integer id);
 }

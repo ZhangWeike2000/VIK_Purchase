@@ -13,6 +13,7 @@ import javax.annotation.Resource;
  * @since 2020-05-28 10:45:24
  */
 @RestController
+@CrossOrigin
 @RequestMapping("buyerExecute")
 public class BuyerExecuteController {
     /**

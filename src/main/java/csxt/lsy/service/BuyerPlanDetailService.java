@@ -52,4 +52,21 @@ public interface BuyerPlanDetailService {
      */
     boolean deleteById(Integer id);
 
+    /**
+     * 根据采购计划id查询采购计划明细
+     *
+     * @return 对象列表
+     */
+    List<BuyerPlanDetail> getBPayDetails(Integer sid);
+
+    /**
+     * 往采购明细添加数据
+     *
+     * @return 对象列表
+     */
+    public void addBPayDetails(List<BuyerPlanDetail> list);
+
+
+
+
 }
