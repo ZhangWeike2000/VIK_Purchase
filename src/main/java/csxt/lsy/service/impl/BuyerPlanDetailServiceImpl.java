@@ -3,9 +3,9 @@ package csxt.lsy.service.impl;
 import csxt.entity.BuyerPlanDetail;
 import csxt.lsy.dao.BuyerPlanDetailDao;
 import csxt.lsy.service.BuyerPlanDetailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,9 +14,9 @@ import java.util.List;
  * @author makejava
  * @since 2020-05-28 10:14:00
  */
-@Service("buyerPlanDetailService")
+@Service
 public class BuyerPlanDetailServiceImpl implements BuyerPlanDetailService {
-    @Resource
+    @Autowired
     private BuyerPlanDetailDao buyerPlanDetailDao;
 
     /**
@@ -76,4 +76,17 @@ public class BuyerPlanDetailServiceImpl implements BuyerPlanDetailService {
     public boolean deleteById(Integer id) {
         return this.buyerPlanDetailDao.deleteById(id) > 0;
     }
+
+    @Override
+    public void addBPayDetails(List<BuyerPlanDetail> list) {
+        for (BuyerPlanDetail buyerPlanDetail : list) {
+            buyerPlanDetailDao.addBPayDetails(buyerPlanDetail);
+        }
+    }
+
+    @Override
+    public List<BuyerPlanDetail> getBPayDetails(Integer sid) {
+        return buyerPlanDetailDao.getBPayDetails(sid);
+    }
+
 }

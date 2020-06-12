@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="csxt.lwm.dao.ReleaseCargoAuditDao">
+    <!--查询所有待审核的放货登记-->
     <select id="selectAllReleaseCargo" resultType="csxt.entity.ReleaseCargo">
         select * from release_cargo where check_tag='R001-0'
     </select>
+    <!--查询当前放货登记信息-->
     <select id="selectReleaseCargoById" resultType="csxt.entity.ReleaseCargo" parameterType="integer">
         select * from release_cargo where id=#{id}
     </select>
+    <!--查询当前的放货登记的放货登记明细信息-->
     <select id="selectReleaseCargoDetailByParent" resultType="csxt.entity.ReleaseCargoDetail" parameterType="integer">
         select * from release_cargo_detail where release_cargo_id=#{releaseCargoId}
     </select>
+    <!--审核放货登记信息-->
     <update id="releaseCargoRegRev" parameterType="csxt.entity.ReleaseCargo">
         update release_cargo set sum_number=#{sumNumber},comment=#{comment},checker=#{checker},check_time=#{checkTime},check_tag=#{checkTag},check_tag='R001-1' where id=#{id}
     </update>
+    <!--审核放货登记明细信息-->
     <update id="releaseCargoDetailRegRev" parameterType="csxt.entity.ReleaseCargoDetail">
-        update release_cargo_detail set put_number=#{putNumber},put_subtotal=real_cost_price*#{putNumber} where id=#{id}
+        update release_cargo_detail set put_number=#{putNumber},need_number=#{needNumber},put_subtotal=real_cost_price*#{putNumber} where id=#{id}
     </update>
-    <update id="buyerExecuteUpdatePutTag" parameterType="integer">
+    <!--审核放货数量小于登记放货数量-->
+    <update id="buyerExecuteUpdatePutTag" parameterType="String">
         UPDATE buyer_execute SET put_tag='F001-2' where id=#{buyerPlanId}
     </update>
+    <!--复核不通过-->
     <update id="releaseCargoNotPass" parameterType="csxt.entity.ReleaseCargo">
         update release_cargo set check_tag='R001-2' where id=#{id}
+    </update>
+    <update id="updateBuyerExecutePutTag" parameterType="int">
+        update buyer_execute set put_tag='F001-2' where product_id=#{productId} and id=#{buyerExecuteId}
     </update>
 </mapper>

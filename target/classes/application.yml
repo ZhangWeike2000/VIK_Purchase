@@ -2,16 +2,16 @@ server:
   port: 9527
 
 spring:
-  mvc:
-    date-format: yyyy-MM-dd HH:mm:ss
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  thymeleaf:
+    cache: false
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url:  jdbc:mysql://localhost:3306/erp?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+      url:  jdbc:mysql://localhost:3306/erp?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
       username: root
       password: root
       initial-size: 5
@@ -65,11 +65,9 @@ spring:
         commons-log:
           statement-execute-after-log-enabled: false
 
-
-mybatis:
+mybatis-plus:
   mapperLocations: classpath:mapper/*.xml
   type-aliases-package: csxt.entity
   configuration:
     map-underscore-to-camel-case: true #是否开启驼峰命名
-
 

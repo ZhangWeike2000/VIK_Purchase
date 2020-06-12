@@ -1,8 +1,10 @@
 package csxt.lsy.service.impl;
 
 import csxt.entity.BuyerPlan;
+import csxt.entity.DFile;
 import csxt.lsy.dao.BuyerPlanDao;
 import csxt.lsy.service.BuyerPlanService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,10 +17,10 @@ import java.util.List;
  * @author makejava
  * @since 2020-05-28 09:42:22
  */
-@Transactional
-@Service("buyerPlanService")
+
+@Service
 public class BuyerPlanServiceImpl implements BuyerPlanService {
-    @Resource
+    @Autowired
     private BuyerPlanDao buyerPlanDao;
 
     /**
@@ -32,16 +34,23 @@ public class BuyerPlanServiceImpl implements BuyerPlanService {
         return this.buyerPlanDao.queryById(id);
     }
 
+
     /**
      * 查询多条数据
      *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
      * @return 对象列表
      */
     @Override
-    public List<BuyerPlan> queryAllByLimit(int offset, int limit) {
-        return this.buyerPlanDao.queryAllByLimit(offset, limit);
+    public List<DFile> selectdfile() {
+        return buyerPlanDao.selectdfile();
+    }
+
+
+
+
+    @Override
+    public int addBPay(BuyerPlan buyerPlan) {
+        return buyerPlanDao.addBPay(buyerPlan);
     }
 
     /**
@@ -50,11 +59,7 @@ public class BuyerPlanServiceImpl implements BuyerPlanService {
      * @param buyerPlan 实例对象
      * @return 实例对象
      */
-    @Override
-    public BuyerPlan insert(BuyerPlan buyerPlan) {
-        this.buyerPlanDao.insert(buyerPlan);
-        return buyerPlan;
-    }
+
 
     /**
      * 修改数据
@@ -77,5 +82,15 @@ public class BuyerPlanServiceImpl implements BuyerPlanService {
     @Override
     public boolean deleteById(Integer id) {
         return this.buyerPlanDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<BuyerPlan> getBPay() {
+        return buyerPlanDao.getBPay();
+    }
+
+    @Override
+    public List<BuyerPlan> getBPay2() {
+        return buyerPlanDao.getBPay2();
     }
 }

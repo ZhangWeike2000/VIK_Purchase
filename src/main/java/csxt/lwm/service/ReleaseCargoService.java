@@ -43,7 +43,7 @@ public interface ReleaseCargoService {
      * @param supplierId 供应商编号
      * @return 执行单编号
      */
-    public int selectExecuteById(@Param("productId") int productId,@Param("supplierId") int supplierId);
+    public List<Integer> selectExecuteById(@Param("productId") int productId,@Param("supplierId") int supplierId);
 
     /**
      * 新增放货登记以及放货登记明细并返回主键
@@ -55,14 +55,16 @@ public interface ReleaseCargoService {
     /**
      * 放货以后，修改执行单的状态
      * 如果本次放货数量等于可登记数量
-     * @param buyerPlanId 执行单编号
+     * @param productId 产品编号
+     * @param supplierId 供应商编号
      */
-    public void updateBuyerExecuteTag(int buyerPlanId);
+    public void updateBuyerExecuteTag(int productId,int supplierId);
 
     /**
      * 放货以后，修改执行单的状态
      * 如果本次放货数量不等于可登记数量
-     * @param buyerPlanId 执行单编号
+     * @param productId 产品编号
+     * @param supplierId 供应商编号
      */
-    public void updateBuyerExecuteTagUnequal(int buyerPlanId);
+    public void updateBuyerExecuteTagUnequal(int productId,int supplierId);
 }

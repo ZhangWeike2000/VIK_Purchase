@@ -39,6 +39,10 @@ public class ReleaseCargoDetail implements Serializable {
     */
     private Integer needNumber;
     /**
+     * 正在质检数量
+     */
+    private Integer qualityNumber;
+    /**
     * 合格数量
     */
     private Integer qualifiedNumber;
@@ -58,7 +62,6 @@ public class ReleaseCargoDetail implements Serializable {
     * 合格小计(元)
     */
     private Integer qualifiedSubtotal;
-
 
     public Integer getId() {
         return id;
@@ -114,6 +117,14 @@ public class ReleaseCargoDetail implements Serializable {
 
     public void setNeedNumber(Integer needNumber) {
         this.needNumber = needNumber;
+    }
+
+    public Integer getQualityNumber() {
+        return qualityNumber;
+    }
+
+    public void setQualityNumber(Integer qualityNumber) {
+        this.qualityNumber = qualityNumber;
     }
 
     public Integer getQualifiedNumber() {

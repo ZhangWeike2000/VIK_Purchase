@@ -1,7 +1,15 @@
 package csxt.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (SupplierApproval)实体类
@@ -9,6 +17,10 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-05-27 23:40:02
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class SupplierApproval implements Serializable {
     private static final long serialVersionUID = -62291754151176116L;
     /**
@@ -26,6 +38,7 @@ public class SupplierApproval implements Serializable {
     /**
     * 拟交货时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date supplierTime;
     /**
     * 电话
@@ -50,6 +63,8 @@ public class SupplierApproval implements Serializable {
     /**
     * 登记时间
     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date registerTime;
     /**
     * 复核人
@@ -58,6 +73,8 @@ public class SupplierApproval implements Serializable {
     /**
     * 复核时间
     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date checkTime;
     /**
     * 物料总成本
@@ -74,6 +91,8 @@ public class SupplierApproval implements Serializable {
     /**
     * 变更时间
     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date changeTime;
     /**
     * 处理人编号
@@ -86,6 +105,7 @@ public class SupplierApproval implements Serializable {
     /**
     * 审核标志
     */
+
     private String checkTag;
     /**
     * 变更标志
@@ -96,173 +116,12 @@ public class SupplierApproval implements Serializable {
     */
     private String applyTag;
 
+    /*报价总金额*/
+    private double totalSum;
 
-    public Integer getId() {
-        return id;
-    }
+   //供应商申请审批管理
+    private List<SupplierApprovalDetails> supplierApprovalDetailsList;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public Integer getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(Integer supplierId) {
-        this.supplierId = supplierId;
-    }
-
-    public String getSupplierName() {
-        return supplierName;
-    }
-
-    public void setSupplierName(String supplierName) {
-        this.supplierName = supplierName;
-    }
-
-    public Date getSupplierTime() {
-        return supplierTime;
-    }
-
-    public void setSupplierTime(Date supplierTime) {
-        this.supplierTime = supplierTime;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Integer getAreaId() {
-        return areaId;
-    }
-
-    public void setAreaId(Integer areaId) {
-        this.areaId = areaId;
-    }
-
-    public String getAreaName() {
-        return areaName;
-    }
-
-    public void setAreaName(String areaName) {
-        this.areaName = areaName;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public String getRegister() {
-        return register;
-    }
-
-    public void setRegister(String register) {
-        this.register = register;
-    }
-
-    public Date getRegisterTime() {
-        return registerTime;
-    }
-
-    public void setRegisterTime(Date registerTime) {
-        this.registerTime = registerTime;
-    }
-
-    public String getChecker() {
-        return checker;
-    }
-
-    public void setChecker(String checker) {
-        this.checker = checker;
-    }
-
-    public Date getCheckTime() {
-        return checkTime;
-    }
-
-    public void setCheckTime(Date checkTime) {
-        this.checkTime = checkTime;
-    }
-
-    public Integer getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(Integer totalCost) {
-        this.totalCost = totalCost;
-    }
-
-    public Integer getChangerNumber() {
-        return changerNumber;
-    }
-
-    public void setChangerNumber(Integer changerNumber) {
-        this.changerNumber = changerNumber;
-    }
-
-    public String getChanger() {
-        return changer;
-    }
-
-    public void setChanger(String changer) {
-        this.changer = changer;
-    }
-
-    public Date getChangeTime() {
-        return changeTime;
-    }
-
-    public void setChangeTime(Date changeTime) {
-        this.changeTime = changeTime;
-    }
-
-    public Integer getDisposeNumber() {
-        return disposeNumber;
-    }
-
-    public void setDisposeNumber(Integer disposeNumber) {
-        this.disposeNumber = disposeNumber;
-    }
-
-    public String getDisposeName() {
-        return disposeName;
-    }
-
-    public void setDisposeName(String disposeName) {
-        this.disposeName = disposeName;
-    }
-
-    public String getCheckTag() {
-        return checkTag;
-    }
-
-    public void setCheckTag(String checkTag) {
-        this.checkTag = checkTag;
-    }
-
-    public String getChangeTag() {
-        return changeTag;
-    }
-
-    public void setChangeTag(String changeTag) {
-        this.changeTag = changeTag;
-    }
-
-    public String getApplyTag() {
-        return applyTag;
-    }
-
-    public void setApplyTag(String applyTag) {
-        this.applyTag = applyTag;
-    }
 
 }

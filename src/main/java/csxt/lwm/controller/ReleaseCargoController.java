@@ -69,7 +69,7 @@ public class ReleaseCargoController {
      * @return 执行单编号
      */
     @GetMapping("/selectExecuteById/{productId}/{supplierId}")
-    public int selectExecuteById(@PathVariable("productId") int productId,@PathVariable("supplierId") int supplierId){
+    public List<Integer> selectExecuteById(@PathVariable("productId") int productId,@PathVariable("supplierId") int supplierId){
         return releaseCargoService.selectExecuteById(productId,supplierId);
     }
 
@@ -80,25 +80,26 @@ public class ReleaseCargoController {
     @PostMapping("/registerReleaseCargo")
     public void registerReleaseCargo(@RequestBody ReleaseCargoDto releaseCargoDto){
         releaseCargoService.insertReleaseCargoAndDetails(releaseCargoDto);
+
     }
 
     /**
      * 放货以后，修改执行单的状态
      * 如果本次放货数量等于可登记数量
-     * @param buyerPlanId 执行单编号
+     * @param productId 执行单编号
      */
-    @PutMapping("/updateBuyerExecuteTagSame/{buyerPlanId}")
-    public void updateBuyerExecuteTagSame(@PathVariable("buyerPlanId") int buyerPlanId){
-        releaseCargoService.updateBuyerExecuteTag(buyerPlanId);
+    @PutMapping("/updateBuyerExecuteTagSame/{productId}/{supplierId}")
+    public void updateBuyerExecuteTagSame(@PathVariable("productId") int productId,@PathVariable("supplierId") int supplierId){
+        releaseCargoService.updateBuyerExecuteTag(productId,supplierId);
     }
 
     /**
      * 放货以后，修改执行单的状态
      * 如果本次放货数量不等于可登记数量
-     * @param buyerPlanId 执行单编号
+     * @param productId 执行单编号
      */
-    @PutMapping("/updateBuyerExecuteTagUnequal/{buyerPlanId}")
-    public void updateBuyerExecuteTagUnequal(@PathVariable("buyerPlanId") int buyerPlanId){
-        releaseCargoService.updateBuyerExecuteTagUnequal(buyerPlanId);
+    @PutMapping("/updateBuyerExecuteTagUnequal/{productId}/{supplierId}")
+    public void updateBuyerExecuteTagUnequal(@PathVariable("productId") int productId,@PathVariable("supplierId") int supplierId){
+        releaseCargoService.updateBuyerExecuteTagUnequal(productId,supplierId);
     }
 }

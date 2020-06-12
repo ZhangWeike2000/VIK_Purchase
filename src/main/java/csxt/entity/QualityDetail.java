@@ -120,4 +120,18 @@ public class QualityDetail implements Serializable {
         this.thisNumber = thisNumber;
     }
 
+    @Override
+    public String toString() {
+        return "QualityDetail{" +
+                "id=" + id +
+                ", qualityId=" + qualityId +
+                ", supplierId=" + supplierId +
+                ", supplierName='" + supplierName + '\'' +
+                ", contacts='" + contacts + '\'' +
+                ", phone='" + phone + '\'' +
+                ", buyerNumber=" + buyerNumber +
+                ", receivedNumber=" + receivedNumber +
+                ", thisNumber=" + thisNumber +
+                '}';
+    }
 }

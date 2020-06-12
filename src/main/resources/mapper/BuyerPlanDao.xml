@@ -79,7 +79,10 @@
     </select>
 
     <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    <insert id="addBPay" parameterType="csxt.entity.BuyerPlan">
+        <selectKey order="AFTER" keyProperty="id" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         insert into erp.buyer_plan(Buyer_reason, Supply_time, planner, sum_amount, sum_money, register, register_time, checker, check_time, COMMENT, check_tag)
         values (#{buyerReason}, #{supplyTime}, #{planner}, #{sumAmount}, #{sumMoney}, #{register}, #{registerTime}, #{checker}, #{checkTime}, #{comment}, #{checkTag})
     </insert>
@@ -129,5 +132,8 @@
     <delete id="deleteById">
         delete from erp.buyer_plan where id = #{id}
     </delete>
-
+    <!--查询供应商所有推荐的产品-->
+    <select id="selectdfile"  resultType="csxt.entity.DFile">
+        SELECT * FROM D_FILE WHERE type='物料'
+    </select>
 </mapper>

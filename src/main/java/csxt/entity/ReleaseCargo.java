@@ -1,6 +1,7 @@
 package csxt.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.io.Serializable;
@@ -20,11 +21,11 @@ public class ReleaseCargo implements Serializable {
     /**
      * 申请单编号
      */
-    private String releaseCargoId;
+    private String serialNumber;
     /**
     * 采购执行单编号
     */
-    private Integer buyerPlanId;
+    private String buyerPlanId;
     /**
     * 供应商编号
     */
@@ -114,19 +115,19 @@ public class ReleaseCargo implements Serializable {
         this.id = id;
     }
 
-    public String getReleaseCargoId() {
-        return releaseCargoId;
+    public String getSerialNumber() {
+        return serialNumber;
     }
 
-    public void setReleaseCargoId(String releaseCargoId) {
-        this.releaseCargoId = releaseCargoId;
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
-    public Integer getBuyerPlanId() {
+    public String getBuyerPlanId() {
         return buyerPlanId;
     }
 
-    public void setBuyerPlanId(Integer buyerPlanId) {
+    public void setBuyerPlanId(String buyerPlanId) {
         this.buyerPlanId = buyerPlanId;
     }
 
@@ -286,7 +287,7 @@ public class ReleaseCargo implements Serializable {
     public String toString() {
         return "ReleaseCargo{" +
                 "id=" + id +
-                ", releaseCargoId='" + releaseCargoId + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
                 ", buyerPlanId=" + buyerPlanId +
                 ", supplierId=" + supplierId +
                 ", supplierName='" + supplierName + '\'' +
