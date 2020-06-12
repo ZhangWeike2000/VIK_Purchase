@@ -1,5 +1,6 @@
 package csxt.zwk.service.impl;
 
+
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.github.pagehelper.PageHelper;
@@ -9,10 +10,10 @@ import csxt.entity.SupplierApprovalDetails;
 import csxt.zwk.dao.ApplyForApprovalMapper;
 import csxt.zwk.service.ApplyForApprovalService;
 import csxt.zwk.vo.ApplicationApprovalDto;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -27,6 +28,7 @@ public class ApplyForApprovalServiceImpl implements ApplyForApprovalService {
 
     @Autowired
     private ApplyForApprovalMapper applyForApprovalMapper;
+
 
     @Override
     public int insert(Object entity) {
@@ -64,6 +66,16 @@ public class ApplyForApprovalServiceImpl implements ApplyForApprovalService {
     }
 
     @Override
+    public int deleteBatchIds(Collection idList) {
+        return 0;
+    }
+
+    @Override
+    public int deleteByMap(Map columnMap) {
+        return 0;
+    }
+
+    @Override
     public Integer selectCount(Wrapper queryWrapper) {
         return null;
     }
@@ -85,14 +97,15 @@ public class ApplyForApprovalServiceImpl implements ApplyForApprovalService {
     }
 
     @Override
-    public IPage<Map<String, Object>> selectMapsPage(IPage page, Wrapper queryWrapper) {
+    public IPage selectPage(IPage page, Wrapper queryWrapper) {
         return null;
     }
 
     @Override
-    public IPage selectPage(IPage page, Wrapper queryWrapper) {
+    public IPage<Map<String, Object>> selectMapsPage(IPage page, Wrapper queryWrapper) {
         return null;
     }
+
 
     @Override
     public List selectByMap(Map columnMap) {
@@ -104,15 +117,6 @@ public class ApplyForApprovalServiceImpl implements ApplyForApprovalService {
         return null;
     }
 
-    @Override
-    public int deleteBatchIds(Collection idList) {
-        return 0;
-    }
-
-    @Override
-    public int deleteByMap(Map columnMap) {
-        return 0;
-    }
 
     @Override
     public List<Map<String, Object>> queryAllByLimit(int offset, int limit) {

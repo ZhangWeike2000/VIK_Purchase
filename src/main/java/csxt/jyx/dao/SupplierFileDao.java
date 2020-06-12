@@ -45,7 +45,7 @@ public interface SupplierFileDao {
      * @param supplierFile 实例对象
      * @return 影响行数
      */
-    int insert(SupplierFile supplierFile);
+    int insertSupplierFile(SupplierFile supplierFile);
 
     /**
      * 修改数据

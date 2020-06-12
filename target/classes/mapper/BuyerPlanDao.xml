@@ -78,7 +78,14 @@
         </where>
     </select>
 
-
+    <!--新增所有列-->
+    <insert id="addBPay" parameterType="csxt.entity.BuyerPlan">
+        <selectKey order="AFTER" keyProperty="id" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into erp.buyer_plan(Buyer_reason, Supply_time, planner, sum_amount, sum_money, register, register_time, checker, check_time, COMMENT, check_tag)
+        values (#{buyerReason}, #{supplyTime}, #{planner}, #{sumAmount}, #{sumMoney}, #{register}, #{registerTime}, #{checker}, #{checkTime}, #{comment}, #{checkTag})
+    </insert>
 
     <!--通过主键修改数据-->
     <update id="update">
@@ -125,24 +132,8 @@
     <delete id="deleteById">
         delete from erp.buyer_plan where id = #{id}
     </delete>
-    <!--查询物料-->
+    <!--查询供应商所有推荐的产品-->
     <select id="selectdfile"  resultType="csxt.entity.DFile">
         SELECT * FROM D_FILE WHERE type='物料'
     </select>
-
-    <select id="getBPay" resultType="csxt.entity.BuyerPlan">
-        SELECT * FROM buyer_plan WHERE check_tag='R001-0'
-    </select>
-    <select id="getBPay2" resultType="csxt.entity.BuyerPlan">
-        SELECT * FROM buyer_plan WHERE check_tag='R001-1'
-    </select>
-
-    <!--新增采购计划单-->
-    <insert id="addBPay" parameterType="csxt.entity.BuyerPlan">
-        <selectKey order="AFTER" keyProperty="id" resultType="int">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
-        insert into erp.buyer_plan
-        values (null,#{buyerReason}, #{supplyTime}, #{planner}, #{sumAmount}, #{sumMoney}, #{register}, #{registerTime}, #{checker}, #{checkTime}, #{comment}, #{checkTag})
-    </insert>
 </mapper>

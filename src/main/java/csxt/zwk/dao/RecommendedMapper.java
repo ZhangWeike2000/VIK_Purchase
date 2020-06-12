@@ -1,17 +1,15 @@
 package csxt.zwk.dao;
 
+
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import csxt.entity.SupplierApprovalDetails;
 import csxt.entity.SupplierFile;
 import csxt.entity.SupplierRecommend;
 import csxt.entity.SupplierRecommendDetail;
-import csxt.zwk.vo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.jdbc.Null;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author mr.z

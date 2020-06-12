@@ -78,7 +78,6 @@ public class ReleaseCargo implements Serializable {
     /**
     * 登记时间
     */
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date registerTime;
     /**
     * 备注
@@ -91,7 +90,6 @@ public class ReleaseCargo implements Serializable {
     /**
     * 审核时间
     */
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date checkTime;
     /**
     * 审核标志

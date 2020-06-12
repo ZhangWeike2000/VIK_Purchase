@@ -3,6 +3,7 @@ package csxt.lsy.service.impl;
 import csxt.entity.BuyerPlan;
 import csxt.entity.DFile;
 import csxt.lsy.dao.BuyerPlanDao;
+import csxt.lsy.dto.UpdateDto;
 import csxt.lsy.service.BuyerPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,5 +93,10 @@ public class BuyerPlanServiceImpl implements BuyerPlanService {
     @Override
     public List<BuyerPlan> getBPay2() {
         return buyerPlanDao.getBPay2();
+    }
+
+    @Override
+    public int updateBPay(UpdateDto updateDto) {
+        return 0;
     }
 }
