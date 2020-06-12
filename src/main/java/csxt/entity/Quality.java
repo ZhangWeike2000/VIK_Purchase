@@ -1,5 +1,7 @@
 package csxt.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -18,11 +20,27 @@ public class Quality implements Serializable {
     /**
      * 采购执行单编号
      */
-    private Integer buyerPlanId;
+    private String buyerPlanId;
     /**
     * 放货登记编号
     */
     private Integer releaseCargoId;
+    /**
+     * 产品编号
+     */
+    private String productId;
+    /**
+     * 产品名称
+     */
+    private String productName;
+    /**
+     * 放货数量
+     */
+    private Integer putNumber;
+    /**
+     * 合格数量
+     */
+    private Integer qualifiedNumber;
     /**
     * 登记人
     */
@@ -44,7 +62,6 @@ public class Quality implements Serializable {
     */
     private String checkTag;
 
-
     public Integer getId() {
         return id;
     }
@@ -53,14 +70,13 @@ public class Quality implements Serializable {
         this.id = id;
     }
 
-    public Integer getBuyerPlanId() {
+    public String getBuyerPlanId() {
         return buyerPlanId;
     }
 
-    public void setBuyerPlanId(Integer buyerPlanId) {
+    public void setBuyerPlanId(String buyerPlanId) {
         this.buyerPlanId = buyerPlanId;
     }
-
 
     public Integer getReleaseCargoId() {
         return releaseCargoId;
@@ -68,6 +84,38 @@ public class Quality implements Serializable {
 
     public void setReleaseCargoId(Integer releaseCargoId) {
         this.releaseCargoId = releaseCargoId;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public Integer getPutNumber() {
+        return putNumber;
+    }
+
+    public void setPutNumber(Integer putNumber) {
+        this.putNumber = putNumber;
+    }
+
+    public Integer getQualifiedNumber() {
+        return qualifiedNumber;
+    }
+
+    public void setQualifiedNumber(Integer qualifiedNumber) {
+        this.qualifiedNumber = qualifiedNumber;
     }
 
     public String getRegister() {
@@ -110,4 +158,21 @@ public class Quality implements Serializable {
         this.checkTag = checkTag;
     }
 
+    @Override
+    public String toString() {
+        return "Quality{" +
+                "id=" + id +
+                ", buyerPlanId='" + buyerPlanId + '\'' +
+                ", releaseCargoId=" + releaseCargoId +
+                ", productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", putNumber=" + putNumber +
+                ", qualifiedNumber=" + qualifiedNumber +
+                ", register='" + register + '\'' +
+                ", registerTime=" + registerTime +
+                ", checker='" + checker + '\'' +
+                ", checkTime=" + checkTime +
+                ", checkTag='" + checkTag + '\'' +
+                '}';
+    }
 }
