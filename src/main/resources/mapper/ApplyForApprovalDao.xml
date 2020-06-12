@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="csxt.zwk.dao.ApplyForApprovalMapper">
+
+    <!--供应商申请审批管理-->
+    <resultMap type="csxt.entity.SupplierApproval" id="SupplierApprovalMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="supplierId" column="supplier_id" jdbcType="INTEGER"/>
+        <result property="supplierName" column="supplier_name" jdbcType="VARCHAR"/>
+        <result property="supplierTime" column="supplier_time" jdbcType="OTHER"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="areaId" column="area_id" jdbcType="INTEGER"/>
+        <result property="areaName" column="area_name" jdbcType="VARCHAR"/>
+        <result property="comment" column="COMMENT" jdbcType="VARCHAR"/>
+        <result property="register" column="register" jdbcType="VARCHAR"/>
+        <result property="registerTime" column="register_time" jdbcType="OTHER"/>
+        <result property="checker" column="checker" jdbcType="VARCHAR"/>
+        <result property="checkTime" column="check_time" jdbcType="OTHER"/>
+        <result property="totalCost" column="total_cost" jdbcType="INTEGER"/>
+        <result property="changerNumber" column="changer_number" jdbcType="INTEGER"/>
+        <result property="changer" column="changer" jdbcType="VARCHAR"/>
+        <result property="changeTime" column="change_time" jdbcType="OTHER"/>
+        <result property="disposeNumber" column="dispose_number" jdbcType="INTEGER"/>
+        <result property="disposeName" column="dispose_name" jdbcType="VARCHAR"/>
+        <result property="checkTag" column="check_tag" jdbcType="VARCHAR"/>
+        <result property="changeTag" column="change_tag" jdbcType="VARCHAR"/>
+        <result property="applyTag" column="apply_tag" jdbcType="VARCHAR"/>
+        <!--报价总金额-->
+        <result property="totalSum" column="totalSum"></result>
+    </resultMap>
+
+    <!--供应商申请审批管理明细-->
+    <resultMap type="csxt.entity.SupplierApprovalDetails" id="SupplierApprovalDetailsMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="approvalId" column="approval_id" jdbcType="INTEGER"/>
+        <result property="productId" column="product_id" jdbcType="VARCHAR"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="productDescribe" column="product_describe" jdbcType="VARCHAR"/>
+        <result property="amount" column="amount" jdbcType="INTEGER"/>
+        <result property="unit" column="unit" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="INTEGER"/>
+        <result property="subtotal" column="subtotal" jdbcType="INTEGER"/>
+        <result property="discount" column="discount" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询物料-->
+    <select id="findMaterials" resultType="java.util.HashMap">
+        SELECT * from D_FILE where type='物料' and CHECK_TAG='S001-1'
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultType="java.util.HashMap">
+        select * from erp.D_FILE
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--提交申请-->
+    <insert id="insertSupplierApproval" keyProperty="id" useGeneratedKeys="true">
+        insert into erp.supplier_approval
+               (supplier_id, supplier_name, supplier_time, phone, area_id, area_name, COMMENT, register, register_time, checker, check_time, total_cost, changer_number, changer, change_time, dispose_number, dispose_name, check_tag, change_tag, apply_tag)
+        values (#{supplierId}, #{supplierName}, #{supplierTime}, #{phone}, #{areaId}, #{areaName}, #{comment}, #{register}, #{registerTime}, null,null, #{totalCost}, #{changerNumber}, #{changer}, null, #{disposeNumber}, #{disposeName}, 'S001-0', #{changeTag}, #{applyTag})
+    </insert>
+
+    <!--提交申请明细-->
+    <insert id="insertSupplierApprovalDetails" keyProperty="id" useGeneratedKeys="true">
+        insert into erp.supplier_approval_details(approval_id, product_id, product_name, product_describe, amount, unit, price, subtotal, discount)
+        values (#{approvalId}, #{productId}, #{productName}, #{productDescribe}, #{amount}, #{unit}, #{price}, #{subtotal}, #{discount})
+    </insert>
+
+    <!--查询未审核申请-->
+    <select id="findNoAuditSupplierApproval" resultMap="SupplierApprovalMap" >
+        SELECT a.*, SUM(b.subtotal) totalSum FROM supplier_approval a,supplier_approval_details b WHERE a.id = b.approval_id and a.check_tag='S001-0' GROUP BY a.id
+    </select>
+
+    <!--查询未审核申请明细-->
+    <select id="findSupplierApprovalDetails" resultMap="SupplierApprovalDetailsMap">
+        select * from supplier_approval_details where approval_id=#{approvalId}
+    </select>
+
+
+    <!--審核-->
+    <update id="AuditSupplierApproval" parameterType="csxt.entity.SupplierApproval">
+        update erp.supplier_approval
+        <set>
+            /*模拟供貨時間*/
+            <if test="supplierTime != null">
+                supplier_time = #{supplierTime},
+            </if>
+            /*电话*/
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+
+            /*备注*/
+            <if test="comment != null and comment != ''">
+                COMMENT = #{comment},
+            </if>
+
+           /*审核人*/
+            <if test="checker != null and checker != ''">
+                checker = #{register},
+            </if>
+
+            /*审核时间*/
+            <if test="checkTime == null">
+                check_time = now(),
+            </if>
+
+            /*物料总成本*/
+            <if test="totalCost != null">
+                total_cost = #{totalCost},
+            </if>
+
+            /*处理人编号*/
+            <if test="disposeNumber != null">
+                dispose_number = #{disposeNumber},
+            </if>
+
+            /*处理人姓名*/
+            <if test="disposeName != null and disposeName != ''">
+                dispose_name = #{disposeName},
+            </if>
+
+            /*申请标志*/
+            <if test="applyTag != null and applyTag != ''">
+                apply_tag = #{applyTag},
+            </if>
+
+            /*审核标志*/
+            <if test="checkTag != null and checkTag != ''">
+                check_tag = #{checkTag}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--審核明細-->
+    <update id="AuditSupplierApprovalDetails" parameterType="csxt.entity.SupplierApprovalDetails">
+        update erp.supplier_approval_details
+        <set>
+            <if test="approvalId != null">
+                approval_id = #{approvalId},
+            </if>
+            <if test="productId != null and productId != ''">
+                product_id = #{productId},
+            </if>
+            <if test="productName != null and productName != ''">
+                product_name = #{productName},
+            </if>
+            <if test="productDescribe != null and productDescribe != ''">
+                product_describe = #{productDescribe},
+            </if>
+            <if test="amount != null">
+                amount = #{amount},
+            </if>
+            <if test="unit != null and unit != ''">
+                unit = #{unit},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="discount != null">
+                discount = #{discount},
+            </if>
+            <if test="subtotal != null">
+                subtotal = #{subtotal}
+            </if>
+
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通用的查询方法-->
+    <select id="findAudited" resultMap="SupplierApprovalMap">
+        select * from supplier_approval
+        <where>
+            <if test="checkTag !=null">
+                check_tag = #{checkTag}
+            </if>
+        </where>
+    </select>
+</mapper>

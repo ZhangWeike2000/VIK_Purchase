@@ -1,5 +1,10 @@
 package csxt.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,16 +14,20 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-05-27 23:40:31
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class SupplierRecommend implements Serializable {
     private static final long serialVersionUID = -27505301341616424L;
     /**
     * 产品供应商推荐编号
     */
-    private Integer id;
+    private int id;
     /**
     * 产品编号
     */
-    private String productId;
+    private int productId;
     /**
     * 产品名称
     */
@@ -65,108 +74,5 @@ public class SupplierRecommend implements Serializable {
     private String changeTag;
 
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getReferrer() {
-        return referrer;
-    }
-
-    public void setReferrer(String referrer) {
-        this.referrer = referrer;
-    }
-
-    public String getRegister() {
-        return register;
-    }
-
-    public void setRegister(String register) {
-        this.register = register;
-    }
-
-    public Date getRegisterTime() {
-        return registerTime;
-    }
-
-    public void setRegisterTime(Date registerTime) {
-        this.registerTime = registerTime;
-    }
-
-    public String getRecommend() {
-        return recommend;
-    }
-
-    public void setRecommend(String recommend) {
-        this.recommend = recommend;
-    }
-
-    public String getChecker() {
-        return checker;
-    }
-
-    public void setChecker(String checker) {
-        this.checker = checker;
-    }
-
-    public Date getCheckTime() {
-        return checkTime;
-    }
-
-    public void setCheckTime(Date checkTime) {
-        this.checkTime = checkTime;
-    }
-
-    public String getChanger() {
-        return changer;
-    }
-
-    public void setChanger(String changer) {
-        this.changer = changer;
-    }
-
-    public Date getChangeTime() {
-        return changeTime;
-    }
-
-    public void setChangeTime(Date changeTime) {
-        this.changeTime = changeTime;
-    }
-
-    public String getCheckTag() {
-        return checkTag;
-    }
-
-    public void setCheckTag(String checkTag) {
-        this.checkTag = checkTag;
-    }
-
-    public String getChangeTag() {
-        return changeTag;
-    }
-
-    public void setChangeTag(String changeTag) {
-        this.changeTag = changeTag;
-    }
 
 }

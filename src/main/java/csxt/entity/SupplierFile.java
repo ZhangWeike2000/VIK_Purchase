@@ -627,4 +627,60 @@ public class SupplierFile implements Serializable {
         this.deleteTag = deleteTag;
     }
 
+    @Override
+    public String toString() {
+        return "SupplierFile{" +
+                "id=" + id +
+                ", supplierName='" + supplierName + '\'' +
+                ", address='" + address + '\'' +
+                ", firstKindId='" + firstKindId + '\'' +
+                ", firstKindName='" + firstKindName + '\'' +
+                ", secondKindId='" + secondKindId + '\'' +
+                ", secondKindName='" + secondKindName + '\'' +
+                ", thirdKindId='" + thirdKindId + '\'' +
+                ", thirdKindName='" + thirdKindName + '\'' +
+                ", formerName='" + formerName + '\'' +
+                ", bankType='" + bankType + '\'' +
+                ", bankAccount='" + bankAccount + '\'' +
+                ", url='" + url + '\'' +
+                ", phone='" + phone + '\'' +
+                ", fax='" + fax + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", areaId=" + areaId +
+                ", areaName='" + areaName + '\'' +
+                ", rankId=" + rankId +
+                ", rankName='" + rankName + '\'' +
+                ", firstContacts='" + firstContacts + '\'' +
+                ", firstDepartment='" + firstDepartment + '\'' +
+                ", firstDuty='" + firstDuty + '\'' +
+                ", firstOfficePhone='" + firstOfficePhone + '\'' +
+                ", firstPhone='" + firstPhone + '\'' +
+                ", firstFamilyPhone='" + firstFamilyPhone + '\'' +
+                ", firstEmail='" + firstEmail + '\'' +
+                ", firstSex='" + firstSex + '\'' +
+                ", secondContacts='" + secondContacts + '\'' +
+                ", secondDepartment='" + secondDepartment + '\'' +
+                ", secondDuty='" + secondDuty + '\'' +
+                ", secondOfficePhone='" + secondOfficePhone + '\'' +
+                ", secondPhone='" + secondPhone + '\'' +
+                ", secondFamilyPhone='" + secondFamilyPhone + '\'' +
+                ", secondEmail='" + secondEmail + '\'' +
+                ", secondSex='" + secondSex + '\'' +
+                ", billingInformation='" + billingInformation + '\'' +
+                ", supplyGather='" + supplyGather + '\'' +
+                ", recommendGather='" + recommendGather + '\'' +
+                ", registerNumber=" + registerNumber +
+                ", register='" + register + '\'' +
+                ", registerTime=" + registerTime +
+                ", buyerNumber=" + buyerNumber +
+                ", buyer='" + buyer + '\'' +
+                ", checker='" + checker + '\'' +
+                ", checkTime=" + checkTime +
+                ", checkTag='" + checkTag + '\'' +
+                ", changer='" + changer + '\'' +
+                ", changeTime=" + changeTime +
+                ", changeTag='" + changeTag + '\'' +
+                ", deleteTag='" + deleteTag + '\'' +
+                '}';
+    }
 }

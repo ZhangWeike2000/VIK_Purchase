@@ -1,5 +1,7 @@
 package csxt.entity;
 
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-05-27 23:40:10
  */
+@ToString
 public class SupplierApprovalDetails implements Serializable {
     private static final long serialVersionUID = -46801737496833996L;
     /**
@@ -45,7 +48,7 @@ public class SupplierApprovalDetails implements Serializable {
     /**
     * 小计
     */
-    private Integer subtotal;
+    private Double subtotal;
     /**
     * 折扣
     */
@@ -116,11 +119,11 @@ public class SupplierApprovalDetails implements Serializable {
         this.price = price;
     }
 
-    public Integer getSubtotal() {
+    public Double getSubtotal() {
         return subtotal;
     }
 
-    public void setSubtotal(Integer subtotal) {
+    public void setSubtotal(Double subtotal) {
         this.subtotal = subtotal;
     }
 
