@@ -51,5 +51,11 @@ public interface SupplierContactService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
+    /**
+     * 通过实体作为筛选条件查询
+     *
+     * @return 对象列表
+     */
+    List<SupplierContact> queryAll(String tag);
 
 }

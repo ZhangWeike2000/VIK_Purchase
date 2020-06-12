@@ -58,9 +58,9 @@ public class SupplierFileController {
      * @param pageSize 查询条数
      * @return 对象列表
      */
-    @GetMapping("getAllSupplierFile")
-    public PageInfo<SupplierFile> getAll(Integer currNo, Integer pageSize) {
-        PageInfo<SupplierFile> pageInfo = this.supplierFileService.getAll(currNo, pageSize);
+    @GetMapping("getAllSupplierFile/{tag}")
+    public PageInfo<SupplierFile> getAll(Integer currNo, Integer pageSize,@PathVariable("tag") String tag) {
+        PageInfo<SupplierFile> pageInfo = this.supplierFileService.getAll(currNo, pageSize,tag);
         return pageInfo;
     }
 
@@ -100,7 +100,7 @@ public class SupplierFileController {
     public void Excel(HttpServletResponse response) throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet("信息表");
-        List<SupplierFile> supplierFileList = supplierFileService.queryAll();
+        List<SupplierFile> supplierFileList = supplierFileService.queryAll("R001-0");
         String fileName = "供应商档案表" + ".xls";
         int rowNum = 1;
         String[] headers = {"供应商名称", "地址", "产品I级分类名称", "产品II级分类名称"

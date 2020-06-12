@@ -82,15 +82,15 @@ public class SupplierFileServiceImpl implements SupplierFileService {
     }
 
     @Override
-    public PageInfo<SupplierFile> getAll(Integer currNo, Integer pageSize) {
+    public PageInfo<SupplierFile> getAll(Integer currNo, Integer pageSize,String tag) {
         PageHelper.startPage(currNo,pageSize);
-        PageInfo pageInfo=new PageInfo(this.supplierFileDao.queryAll());
+        PageInfo pageInfo=new PageInfo(this.supplierFileDao.queryAll(tag));
         return pageInfo;
     }
 
     @Override
-    public List<SupplierFile> queryAll() {
-        return this.supplierFileDao.queryAll();
+    public List<SupplierFile> queryAll(String tag) {
+        return this.supplierFileDao.queryAll(tag);
     }
 
 

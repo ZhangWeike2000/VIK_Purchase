@@ -35,10 +35,9 @@ public interface SupplierContactDao {
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param supplierContact 实例对象
      * @return 对象列表
      */
-    List<SupplierContact> queryAll(SupplierContact supplierContact);
+    List<SupplierContact> queryAll(String tag);
 
     /**
      * 新增数据
