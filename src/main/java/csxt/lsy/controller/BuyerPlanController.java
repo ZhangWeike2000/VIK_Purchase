@@ -63,6 +63,24 @@ public class BuyerPlanController {
         return buyerPlanService.getBPay();
     }
 
+    @RequestMapping("/getBPayDto")
+    public BuyerPlanDto selectBPayDto(UpdateDto updateDto) {
+        buyerPlanService.updateBPay2(updateDto);
+        BuyerPlanDto buyerPlanDto = new BuyerPlanDto();
+        buyerPlanDto.setbPay(buyerPlanService.getBPayById(updateDto.getId()));
+        buyerPlanDto.setbPayDetails(buyerPlanDetailService.getBPayDetailsByPid(updateDto.getId()));
+        return buyerPlanDto;
+    }
 
+    @RequestMapping("/updateBPay")
+    public void updateSPay(@RequestBody UpdateDto updateDto) {
+        if (updateDto.getName().equals("通过")) {
+            updateDto.setName("R001-1");
+            buyerPlanService.updateBPay(updateDto);
+        } else {
+            updateDto.setName("R001-2");
+            buyerPlanService.updateBPay(updateDto);
+        }
+    }
 
 }

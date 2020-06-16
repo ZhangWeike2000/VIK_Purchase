@@ -74,5 +74,9 @@ public interface BuyerPlanService {
      * @return 对象列表
      */
     public int updateBPay(UpdateDto updateDto);
-
+    //修改
+    public int updateBPay2(UpdateDto updateDto);
+    public int updateBPay3(UpdateDto updateDto);
+    //根据id查询未审核的
+    public BuyerPlan getBPayById(Integer id);
 }

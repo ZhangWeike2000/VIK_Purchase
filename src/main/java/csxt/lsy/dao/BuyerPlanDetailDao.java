@@ -80,4 +80,6 @@ public interface BuyerPlanDetailDao {
      */
     void addBPayDetails(BuyerPlanDetail buyerPlanDetail);
 
+    //根据父id查询
+     List<BuyerPlanDetail> getBPayDetailsByPid(Integer id);
 }

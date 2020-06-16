@@ -85,6 +85,11 @@ public class BuyerPlanDetailServiceImpl implements BuyerPlanDetailService {
     }
 
     @Override
+    public List<BuyerPlanDetail> getBPayDetailsByPid(Integer id) {
+        return buyerPlanDetailDao.getBPayDetailsByPid(id);
+    }
+
+    @Override
     public List<BuyerPlanDetail> getBPayDetails(Integer sid) {
         return buyerPlanDetailDao.getBPayDetails(sid);
     }

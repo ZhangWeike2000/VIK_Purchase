@@ -66,7 +66,8 @@ public interface BuyerPlanDetailService {
      */
     public void addBPayDetails(List<BuyerPlanDetail> list);
 
-
+    //根据父id查询
+    public List<BuyerPlanDetail> getBPayDetailsByPid(Integer id);
 
 
 }
