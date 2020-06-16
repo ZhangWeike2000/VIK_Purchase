@@ -97,6 +97,21 @@ public class BuyerPlanServiceImpl implements BuyerPlanService {
 
     @Override
     public int updateBPay(UpdateDto updateDto) {
-        return 0;
+        return buyerPlanDao.updateBPay(updateDto);
+    }
+
+    @Override
+    public int updateBPay2(UpdateDto updateDto) {
+        return buyerPlanDao.updateBPay2(updateDto);
+    }
+
+    @Override
+    public int updateBPay3(UpdateDto updateDto) {
+        return buyerPlanDao.updateBPay3(updateDto);
+    }
+
+    @Override
+    public BuyerPlan getBPayById(Integer id) {
+        return buyerPlanDao.getBPayById(id);
     }
 }
