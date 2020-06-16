@@ -51,9 +51,10 @@ public class ReleaseCargoServiceImpl implements ReleaseCargoService {
                 buyerPlanId = buyerPlanId + "," + integerList.get(i);
             }
         }
-        //查询这个执行单的放货数量
+        //这里可能需要重新写查询
+        //查询这个放货单的放货数量
         Integer putNumber = releaseCargoDao.selectReleaseCargoPutNumber(buyerPlanId, productId);
-        //查询这个执行单的需求数量
+        //查询这个放货单的需求数量
         Integer needNumber = releaseCargoDao.selectReleaseCargoNeedNumber(buyerPlanId, productId);
         Integer number = 0;
         if (putNumber != null) {
