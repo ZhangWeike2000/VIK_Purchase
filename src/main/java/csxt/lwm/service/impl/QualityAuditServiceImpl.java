@@ -37,12 +37,23 @@ public class QualityAuditServiceImpl implements QualityAuditService{
         qualityAuditDao.updateReleaseCargo(releaseCargoDatailId,qualityAndDetailDto.getSerialNumber());
         qualityAuditDao.updateReleaseCargoCheckTag(qualityAndDetailDto.getSerialNumber());
         String buyerPlanId=qualityAuditDao.selectReleaseCargoBuyerPlanId(qualityAndDetailDto.getSerialNumber());
-
         if (buyerPlanId!=null){
             String[] buyerExecute=buyerPlanId.split(",");
             for (int i=0;i<buyerExecute.length;i++){
                 qualityAuditDao.updateBuyerExecute(new Integer(buyerExecute[i]));
             }
         }
+        //生成一个入库单
+    }
+
+    @Override
+    public void qualityNotPass(QualityAndDetailDto qualityAndDetailDto) {
+        qualityAuditDao.updateQualityDetail(qualityAndDetailDto.getQualityDetails().get(0));
+        qualityAuditDao.updateQuality(qualityAndDetailDto.getQuality());
+        int releaseCargoDatailId=qualityAuditDao.selectReleaseCargoDatailId(qualityAndDetailDto.getSerialNumber(),new Integer(qualityAndDetailDto.getQuality().getProductId()));
+        qualityAuditDao.updateReleaseCargoDatail(releaseCargoDatailId,qualityAndDetailDto.getQuality().getQualifiedNumber());
+        qualityAuditDao.updateReleaseCargo(releaseCargoDatailId,qualityAndDetailDto.getSerialNumber());
+        qualityAuditDao.updateReleaseCargoCheckTagAndDispostTag(qualityAndDetailDto.getSerialNumber());
+        //生成一个入库单
     }
 }

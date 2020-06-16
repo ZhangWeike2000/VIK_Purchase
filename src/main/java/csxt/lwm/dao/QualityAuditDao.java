@@ -78,6 +78,12 @@ public interface QualityAuditDao {
     public void updateReleaseCargoCheckTag(int serialNumber);
 
     /**
+     * 修改放货登记的质检状态以及处理状态
+     * @param serialNumber 申请单编号
+     */
+    public void updateReleaseCargoCheckTagAndDispostTag(int serialNumber);
+
+    /**
      * 查询已经质检通过的执行单编号
      * @param serialNumber 申请单编号
      * @return 执行单编号集合

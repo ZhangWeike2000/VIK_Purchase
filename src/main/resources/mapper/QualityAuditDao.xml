@@ -4,45 +4,60 @@
     <!--查询所有未审核的放货登记的放货明细信息-->
     <select id="selectAllReleaseCargoDetailTag" resultType="csxt.lwm.dto.ReleaseCargoDetailDto">
         SELECT rcd.id,(SELECT serial_number FROM release_cargo WHERE id=rcd.release_cargo_id) serial_number,rcd.release_cargo_id,rcd.product_id,rcd.product_name,rcd.describe,rcd.put_number,rcd.need_number,rcd.qualified_number,rcd.amount_unit,rcd.real_cost_price,rcd.put_subtotal,rcd.qualified_subtotal FROM release_cargo_detail rcd
-        WHERE put_number!=0 and quality_number!=0 AND 'D001-2'=(SELECT quality_tag FROM release_cargo WHERE id=rcd.release_cargo_id)
+        WHERE put_number!=0 AND quality_number!=0 AND qualified_subtotal=0 AND 'D001-2'=(SELECT quality_tag FROM release_cargo WHERE id=rcd.release_cargo_id)
     </select>
+    <!--查询当前质检登记-->
     <select id="selectQualityByReleaseCargoId" resultType="csxt.entity.Quality" parameterType="int">
         select * from quality where release_cargo_id=#{releaseCargoId} and product_id=#{productId}
     </select>
+    <!--查询当前质检登记明细信息-->
     <select id="selectQualityDetailByQualityId" resultType="csxt.entity.QualityDetail" parameterType="integer">
         select * from quality_detail where quality_id=#{qualityId}
     </select>
+    <!--查询执行单信息-->
     <select id="selectBuyerExecuteById" parameterType="String" resultType="integer">
         select id from buyer_execute where id=#{buyerPlanId} and product_id=#{productId} and (quality_tag='Q001-0' OR quality_tag='Q001-2')
     </select>
+    <!--修改质检登记明细信息-->
     <update id="updateQualityDetail" parameterType="csxt.entity.QualityDetail">
         update quality_detail set contacts=#{contacts},phone=#{phone},received_number=#{receivedNumber} where id=#{id}
     </update>
+    <!--修改质检登记信息-->
     <update id="updateQuality" parameterType="csxt.entity.Quality">
         update quality set qualified_number=#{qualifiedNumber},checker=#{checker},check_time=#{checkTime},check_tag='R001-1' where id=#{id}
     </update>
+    <!--查询放货登记明细编号-->
     <select id="selectReleaseCargoDatailId" parameterType="int" resultType="int">
         SELECT id FROM release_cargo_detail
         WHERE release_cargo_id=
         (SELECT id FROM release_cargo WHERE serial_number=#{serialNumber})
         AND product_id=#{productId}
     </select>
+    <!--修改放货登记明细信息-->
     <update id="updateReleaseCargoDatail" parameterType="int">
         update release_cargo_detail set qualified_number=#{qualifiedNumber},qualified_subtotal=qualified_subtotal+(qualified_number*real_cost_price) where id=#{id}
     </update>
+    <!--修改放货登记信息-->
     <update id="updateReleaseCargo" parameterType="int">
     UPDATE release_cargo SET qualified_number=qualified_number+
     (SELECT qualified_number FROM release_cargo_detail WHERE id=#{id}),
     qualified_money=qualified_money+(SELECT qualified_subtotal FROM release_cargo_detail WHERE id=#{id})
     where serial_number=#{serialNumber}
     </update>
+    <!--修改放货登记的质检状态-->
     <update id="updateReleaseCargoCheckTag" parameterType="int">
         UPDATE release_cargo SET quality_tag='D001-1' WHERE serial_number=#{serialNumber} AND sum_number=qualified_number
     </update>
+    <!--修改放货登记的质检状态以及处理状态-->
+    <update id="updateReleaseCargoCheckTagAndDispostTag" parameterType="int">
+        UPDATE release_cargo SET quality_tag='D001-2',dispose_tag='D001-1' WHERE serial_number=#{serialNumber}
+    </update>
+    <!--查询已经质检通过的执行单编号-->
     <select id="selectReleaseCargoBuyerPlanId" resultType="String" parameterType="int">
         SELECT buyer_plan_id FROM release_cargo WHERE quality_tag='D001-1' AND serial_number=#{serialNumber}
     </select>
+    <!--修改执行单的质检状态-->
     <update id="updateBuyerExecute" parameterType="int">
-        update buyer_execute set quality_tag='Q001-1' WHERE id=#{id}
+        update buyer_execute set quality_tag='Q001-1' WHERE id=#{id} and put_tag='F001-1'
     </update>
 </mapper>

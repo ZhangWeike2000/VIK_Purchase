@@ -23,4 +23,10 @@ public interface QualityAuditService {
      * @param qualityAndDetailDto 质检登记和质检登记明细信息
      */
     public void qualityPass(QualityAndDetailDto qualityAndDetailDto);
+
+    /**
+     * 质检通过(合格数量小于放货数量)
+     * @param qualityAndDetailDto 质检登记和质检登记明细信息
+     */
+    public void qualityNotPass(QualityAndDetailDto qualityAndDetailDto);
 }

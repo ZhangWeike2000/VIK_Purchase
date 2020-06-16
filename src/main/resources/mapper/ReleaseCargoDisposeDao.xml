@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="csxt.lwm.dao.ReleaseCargoDisposeDao">
+    <select id="selectReleaseCargoDispostTag" resultType="csxt.entity.ReleaseCargo" parameterType="String">
+        SELECT * FROM release_cargo WHERE (dispose_tag='D001-1' OR dispose_tag='D001-2') and supplier_id=#{supplierId}
+    </select>
+</mapper>

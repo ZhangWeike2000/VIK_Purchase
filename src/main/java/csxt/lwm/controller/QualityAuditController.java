@@ -38,4 +38,11 @@ public class QualityAuditController {
         System.out.println(qualityAndDetailDto.getQualityDetails().get(0).toString());
         qualityAuditService.qualityPass(qualityAndDetailDto);
     }
+    @PostMapping("/qualityAndDetailDtoRegRevNotPass")
+    public void qualityAndDetailDtoRegRevNotPass(@RequestBody QualityAndDetailDto qualityAndDetailDto){
+        System.out.println(qualityAndDetailDto.getSerialNumber());
+        System.out.println(qualityAndDetailDto.getQuality().toString());
+        System.out.println(qualityAndDetailDto.getQualityDetails().get(0).toString());
+        qualityAuditService.qualityNotPass(qualityAndDetailDto);
+    }
 }
