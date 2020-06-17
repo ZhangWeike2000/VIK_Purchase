@@ -1,5 +1,6 @@
 package csxt.zwk.dao;
 
+
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import csxt.entity.SupplierApproval;
 import csxt.entity.SupplierApprovalDetails;
@@ -18,7 +19,7 @@ import java.util.Map;
  * @describe 申请审批管理
  */
 @Mapper
-public interface ApplyForApprovalMapper extends BaseMapper<SupplierFile>{
+public interface ApplyForApprovalMapper extends BaseMapper<SupplierFile> {
 
      /**
       * 查询需要采购的物料

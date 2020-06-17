@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="csxt.lwm.dao.QualityRegDao">
-
+    <!--查询所有未审核的放货登记的放货明细信息-->
+    <select id="selectAllReleaseCargoDetail" resultType="csxt.lwm.dto.ReleaseCargoDetailDto">
+        SELECT rcd.id,(SELECT serial_number FROM release_cargo WHERE id=rcd.release_cargo_id) serial_number,rcd.release_cargo_id,rcd.product_id,rcd.product_name,rcd.describe,rcd.put_number,rcd.need_number,rcd.qualified_number,rcd.amount_unit,rcd.real_cost_price,rcd.put_subtotal,rcd.qualified_subtotal FROM release_cargo_detail rcd
+        WHERE put_number!=0 and quality_number=0
+    </select>
+    <!--查询当前的放货登记明细信息-->
+    <select id="selectReleaseCargoById" resultType="csxt.entity.ReleaseCargo" parameterType="integer">
+        select * from release_cargo where id=#{releaseCargoId}
+    </select>
+    <!--查询当前放货登记明细信息的放货登记信息-->
+    <select id="selectReleaseCargoDetailByParent" resultType="csxt.entity.ReleaseCargoDetail" parameterType="integer">
+        select * from release_cargo_detail where id=#{id}
+    </select>
+    <!--新增质检登记信息-->
+    <insert id="insertQuality" parameterType="csxt.entity.Quality" useGeneratedKeys="true" keyProperty="id">
+        insert into quality (id,buyer_plan_id,release_cargo_id,product_id,product_name,put_number,qualified_number,register,register_time,checker,check_time,check_tag)
+        value(null,#{buyerPlanId},#{releaseCargoId},#{productId},#{productName},#{putNumber},#{qualifiedNumber},#{register},#{registerTime},null,null,#{checkTag})
+    </insert>
+    <!--批量添加质检登记明细-->
+    <insert id="insertQualityDetail" parameterType="java.util.List">
+        insert into quality_detail (id,quality_id,supplier_id,supplier_name,contacts,phone,buyer_number,received_number,this_number) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (null,#{item.qualityId},#{item.supplierId},#{item.supplierName},#{item.contacts},#{item.phone},#{item.buyerNumber},#{item.receivedNumber},#{item.thisNumber})
+        </foreach>
+    </insert>
+    <!--修改放货登记单的质检状态-->
+    <update id="updateReleaseCargoQualityTag" parameterType="int">
+        update release_cargo set quality_tag='D001-2' where id=#{id}
+    </update>
+    <!--修改执行单质检状态-->
+    <update id="updateBuyerExecuteQualityTag" parameterType="String">
+        update buyer_execute set quality_tag='Q001-2' where id=#{id}
+    </update>
+    <update id="updateReleaseCargoDetail" parameterType="int">
+        update release_cargo_detail set quality_number=#{thisNumber} where id=#{id}
+    </update>
+    <select id="selectBuyerExecuteById" parameterType="String" resultType="integer">
+        select id from buyer_execute where id=#{buyerPlanId} and product_id=#{productId} and (quality_tag='Q001-0' OR quality_tag='Q001-2')
+    </select>
 </mapper>

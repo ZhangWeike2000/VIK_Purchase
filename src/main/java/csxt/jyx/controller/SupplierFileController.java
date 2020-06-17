@@ -73,7 +73,7 @@ public class SupplierFileController {
      */
     @PostMapping("addSupplierFile")
     public SupplierFile insert(@RequestBody SupplierFile supplierFile) {
-
+        System.out.println(supplierFile.toString());
         return supplierFileService.insert(supplierFile);
     }
 
@@ -143,7 +143,7 @@ public class SupplierFileController {
             row1.createCell(24).setCellValue(list.getRegister());
             row1.createCell(25).setCellValue(list.getRegisterTime());
             row1.createCell(26).setCellValue(list.getBuyer());
-            if(list.getBuyerNumber()==null){
+            if(list.getBuyerNumber()==0){
                 row1.createCell(27).setCellValue("");
             }else {
                 row1.createCell(27).setCellValue(list.getBuyerNumber());

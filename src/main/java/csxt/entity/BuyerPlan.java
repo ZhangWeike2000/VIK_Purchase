@@ -1,5 +1,7 @@
 package csxt.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -22,6 +24,7 @@ public class BuyerPlan implements Serializable {
     /**
     * 供货时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date supplyTime;
     /**
     * 计划制定人
@@ -42,6 +45,7 @@ public class BuyerPlan implements Serializable {
     /**
     * 登记时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date registerTime;
     /**
     * 审核人
@@ -50,6 +54,7 @@ public class BuyerPlan implements Serializable {
     /**
     * 审核时间
     */
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date checkTime;
     /**
     * 备注

@@ -3,6 +3,8 @@ package csxt.lsy.dao;
 import csxt.entity.BuyerPlanDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 /**
@@ -12,6 +14,7 @@ import java.util.List;
  * @since 2020-05-28 10:14:00
  */
 @Mapper
+@Component("BuyerPlanDetailDao")
 public interface BuyerPlanDetailDao {
 
     /**
@@ -64,4 +67,19 @@ public interface BuyerPlanDetailDao {
      */
     int deleteById(Integer id);
 
+    /**
+     * 根据采购计划id查询采购计划明细
+     *
+     * @return 对象列表
+     */
+    List<BuyerPlanDetail> getBPayDetails(Integer sid);
+
+    /**
+     * 往采购明细添加数据
+     *
+     */
+    void addBPayDetails(BuyerPlanDetail buyerPlanDetail);
+
+    //根据父id查询
+     List<BuyerPlanDetail> getBPayDetailsByPid(Integer id);
 }

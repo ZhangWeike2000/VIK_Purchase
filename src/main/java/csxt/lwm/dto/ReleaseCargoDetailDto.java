@@ -1,67 +1,62 @@
-package csxt.entity;
+package csxt.lwm.dto;
 
 import java.io.Serializable;
 
-/**
- * (ReleaseCargoDetail)实体类
- *
- * @author makejava
- * @since 2020-05-27 23:42:27
- */
-public class ReleaseCargoDetail implements Serializable {
+public class ReleaseCargoDetailDto implements Serializable {
     private static final long serialVersionUID = -92796842944329624L;
     /**
-    * 放货登记明细编号
-    */
+     * 放货登记明细编号
+     */
     private Integer id;
     /**
-    * 放货登记编号
-    */
+     * 申请单编号
+     */
+    private String serialNumber;
+    /**
+     * 放货登记编号
+     */
     private Integer releaseCargoId;
     /**
-    * 产品编号
-    */
+     * 产品编号
+     */
     private String productId;
     /**
-    * 产品名称
-    */
+     * 产品名称
+     */
     private String productName;
     /**
-    * 描述
-    */
+     * 描述
+     */
     private String describe;
     /**
-    * 放货数量
-    */
+     * 放货数量
+     */
     private Integer putNumber;
     /**
-    * 需求数量
-    */
+     * 需求数量
+     */
     private Integer needNumber;
     /**
-     * 正在质检数量
+     * 合格数量
      */
-    private Integer qualityNumber;
-    /**
-    * 合格数量
-    */
     private Integer qualifiedNumber;
     /**
-    * 单位
-    */
+     * 单位
+     */
     private String amountUnit;
     /**
-    * 单价(元)
-    */
+     * 单价(元)
+     */
     private Integer realCostPrice;
     /**
-    * 放货小计(元)
-    */
+     * 放货小计(元)
+     */
     private Integer putSubtotal;
     /**
-    * 合格小计(元)
-    */
+     * 合格小计(元)
+     */
     private Integer qualifiedSubtotal;
+
 
     public Integer getId() {
         return id;
@@ -69,6 +64,14 @@ public class ReleaseCargoDetail implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public Integer getReleaseCargoId() {
@@ -117,14 +120,6 @@ public class ReleaseCargoDetail implements Serializable {
 
     public void setNeedNumber(Integer needNumber) {
         this.needNumber = needNumber;
-    }
-
-    public Integer getQualityNumber() {
-        return qualityNumber;
-    }
-
-    public void setQualityNumber(Integer qualityNumber) {
-        this.qualityNumber = qualityNumber;
     }
 
     public Integer getQualifiedNumber() {

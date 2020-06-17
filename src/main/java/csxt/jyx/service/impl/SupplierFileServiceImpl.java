@@ -54,7 +54,7 @@ public class SupplierFileServiceImpl implements SupplierFileService {
      */
     @Override
     public SupplierFile insert(SupplierFile supplierFile) {
-        this.supplierFileDao.insert(supplierFile);
+        this.supplierFileDao.insertSupplierFile(supplierFile);
         return supplierFile;
     }
 

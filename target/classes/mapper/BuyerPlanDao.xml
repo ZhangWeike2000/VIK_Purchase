@@ -79,7 +79,10 @@
     </select>
 
     <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+    <insert id="addBPay" parameterType="csxt.entity.BuyerPlan">
+        <selectKey order="AFTER" keyProperty="id" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         insert into erp.buyer_plan(Buyer_reason, Supply_time, planner, sum_amount, sum_money, register, register_time, checker, check_time, COMMENT, check_tag)
         values (#{buyerReason}, #{supplyTime}, #{planner}, #{sumAmount}, #{sumMoney}, #{register}, #{registerTime}, #{checker}, #{checkTime}, #{comment}, #{checkTag})
     </insert>
@@ -129,5 +132,32 @@
     <delete id="deleteById">
         delete from erp.buyer_plan where id = #{id}
     </delete>
+    <!--查询供应商所有推荐的产品-->
+    <select id="selectdfile"  resultType="csxt.entity.DFile">
+        SELECT * FROM D_FILE WHERE type='物料'
+    </select>
 
+    <select id="getBPayById" resultType="csxt.entity.BuyerPlan" parameterType="int">
+        SELECT * FROM buyer_plan WHERE id=#{id}
+    </select>
+
+    <select id="getBPay" resultType="csxt.entity.BuyerPlan">
+        SELECT * FROM buyer_plan WHERE check_tag='R001-0'
+    </select>
+
+    <select id="getBPay2" resultType="csxt.entity.BuyerPlan">
+        SELECT * FROM buyer_plan WHERE check_tag='R001-1'
+    </select>
+
+    <update id="updateBPay" parameterType="csxt.lsy.dto.UpdateDto">
+        update buyer_plan set check_tag=#{name} where id=#{id}
+    </update>
+
+    <update id="updateBPay2" parameterType="csxt.lsy.dto.UpdateDto">
+        update buyer_plan set checker=#{name},check_time=#{time} where id=#{id}
+    </update>
+
+    <update id="updateBPay3" parameterType="csxt.lsy.dto.UpdateDto">
+        update buyer_plan set attemper=#{name},attemper_time=#{time},paid_amount_sum=paid_amount_sum+#{sl},store_tag=#{tag} where id=#{id}
+    </update>
 </mapper>
