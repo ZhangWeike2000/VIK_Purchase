@@ -43,7 +43,7 @@ public interface ApplyForApprovalMapper extends BaseMapper<SupplierFile>{
       */
      int insertSupplierApproval(SupplierApproval supplierApproval);
      int insertSupplierApprovalDetails(SupplierApprovalDetails supplierApprovalDetails);
-
+     int updateSupplierApproval(Integer id);
 
      /**
       * 查询未审核的申请请求

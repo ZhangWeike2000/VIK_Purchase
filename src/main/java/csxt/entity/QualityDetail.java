@@ -1,5 +1,7 @@
 package csxt.entity;
 
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-05-27 23:43:01
  */
+@ToString
 public class QualityDetail implements Serializable {
     private static final long serialVersionUID = 742552644718497547L;
     /**

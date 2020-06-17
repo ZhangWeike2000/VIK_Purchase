@@ -18,12 +18,10 @@
 
     <!--查詢所有供應商-->
     <select id="findAllSupplier" resultType="csxt.entity.SupplierFile">
-          SELECT * from supplier_file
-          <where>
-              <if test="checkTag!=null">
-                  check_tag=#{checkTag}
-              </if>
-          </where>
+        select * from supplier_file where id not in
+        (
+        select supplier_id from supplier_recommend_detail where recommend_id in ( select id from supplier_recommend where product_id=#{productId})
+        )and change_tag='D002-2' and check_tag='S001-1'
     </select>
 
     <!--查询指定行数据-->
@@ -46,6 +44,28 @@
 
     <select id="findNoAuditSupplierRecommendDetail" resultMap="SupplierRecommendDetailMap" parameterType="integer">
         select * from supplier_recommend_detail where recommend_id=#{recommendId}
+    </select>
+
+    <resultMap type="csxt.entity.Quality" id="QualityMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="checkTime" column="Dtime" jdbcType="OTHER"/>
+        <!-- 关联对象 -->
+        <association property="qualityDetail" javaType="csxt.entity.QualityDetail">
+            <!-- 关联条件Employee的dept_id对应着Department的id -->
+            <id column="id" property="id"/>
+            <!--采购数量-->
+            <result property="buyerNumber" column="buyer_number" jdbcType="INTEGER"/>
+            <!--已收合格数量-->
+            <result property="receivedNumber" column="QCNumber" jdbcType="INTEGER"/>
+        </association>
+    </resultMap>
+
+    <!--统计图-->
+    <select id="VCharts" resultType="long">
+     SELECT SUM(buyer_number) FROM quality_detail  where quality_id IN
+     (
+        SELECT id FROM quality WHERE CHECK_TAG='S001-1' and TO_DAYS(REGISTER_TIME) = TO_DAYS(NOW()) - #{day}
+     )
     </select>
 
 

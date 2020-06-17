@@ -11,9 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author mr.z
@@ -46,12 +45,12 @@ public class RecommendedContrller {
     /**
      * 查询所有供应商
      *
-     * @param supplierFile
+     * @param
      * @return
      */
-    @GetMapping("/findAllSupplier/{currNo}/{pageSize}")
-    public PageInfo<SupplierFile> findAllSupplier(@PathVariable("currNo") Integer currNo, @PathVariable("pageSize") Integer pageSize, SupplierFile supplierFile) {
-        return recommendedService.getAll(currNo, pageSize, supplierFile);
+    @PostMapping("/findAllSupplier")
+    public PageInfo<SupplierFile> findAllSupplier(@RequestBody ApplicationApprovalDto applicationApprovalDto) {
+        return recommendedService.getAll(applicationApprovalDto);
     }
 
     /***
@@ -94,13 +93,26 @@ public class RecommendedContrller {
     public int AuditSupplierRecommend(@RequestBody SupplierRecommend supplierRecommend) {
         return recommendedMapper.updateById(supplierRecommend);
     }
+
     /***
      * 查询
      * @param
      * @return
      */
-    @GetMapping ("/SelectSupplierRecommend")
+    @GetMapping("/SelectSupplierRecommend")
     public List<SupplierRecommend> SelectSupplierRecommend() {
         return recommendedMapper.selectList(null);
     }
+
+    /**
+     * 统计图报表
+     *
+     * @return
+     */
+    @GetMapping("/VCharts")
+    public List<Map<String, Object>> VCharts() {
+        recommendedService.VCharts();
+        return null;
+    }
+
 }

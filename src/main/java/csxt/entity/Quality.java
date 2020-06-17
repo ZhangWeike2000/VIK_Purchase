@@ -1,7 +1,10 @@
 package csxt.entity;
 
+import lombok.ToString;
+
 import java.util.Date;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (Quality)实体类
@@ -9,6 +12,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-05-27 23:42:52
  */
+@ToString
 public class Quality implements Serializable {
     private static final long serialVersionUID = 469886400281890299L;
     /**
@@ -44,6 +48,18 @@ public class Quality implements Serializable {
     */
     private String checkTag;
 
+    /**
+     *质检明细
+     */
+    private QualityDetail qualityDetail;
+
+    public QualityDetail getQualityDetail() {
+        return qualityDetail;
+    }
+
+    public void setQualityDetail(QualityDetail qualityDetail) {
+        this.qualityDetail = qualityDetail;
+    }
 
     public Integer getId() {
         return id;

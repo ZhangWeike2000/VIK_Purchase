@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.jta.WebSphereUowTransactionManager;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.*;
 
 /**
  * @author mr.z
@@ -32,12 +34,12 @@ public class RecommendedServiceImpl implements RecommendedService {
     /**
      * 查询所有供应商
      *
-     * @param supplierFile
+     * @param
      * @return
      */
     @Override
-    public List<SupplierFile> findAllSupplier(SupplierFile supplierFile) {
-        return recommendedMapper.findAllSupplier(supplierFile);
+    public List<SupplierFile> findAllSupplier(Integer productId) {
+        return recommendedMapper.findAllSupplier(productId);
     }
 
     /**
@@ -55,14 +57,14 @@ public class RecommendedServiceImpl implements RecommendedService {
     /**
      * 進行分頁
      *
-     * @param currNo
-     * @param pageSize
+     * @param
+     * @param
      * @return
      */
     @Override
-    public PageInfo<SupplierFile> getAll(Integer currNo, Integer pageSize, SupplierFile supplierFile) {
-        PageHelper.startPage(currNo, pageSize);
-        PageInfo pageInfo = new PageInfo(this.recommendedMapper.findAllSupplier(supplierFile));
+    public PageInfo<SupplierFile> getAll(ApplicationApprovalDto applicationApprovalDto) {
+        PageHelper.startPage(applicationApprovalDto.getCurrNo(), applicationApprovalDto.getPageSize());
+        PageInfo pageInfo = new PageInfo(this.recommendedMapper.findAllSupplier(applicationApprovalDto.getProductId()));
         return pageInfo;
     }
 
@@ -85,5 +87,31 @@ public class RecommendedServiceImpl implements RecommendedService {
             recommendedMapper.submitRecommendDetail(list);
         }
         return rs;
+    }
+
+    /***
+     * 统计图
+     * @return
+     */
+    @Override
+    public List<HashMap> VCharts() {
+        LocalDate date = LocalDate.now();
+        List<String> dates = new ArrayList<>();
+        Map<String, Object> map = new HashMap<>();
+        List<Long> buyerSumAmounts = new ArrayList<>();
+        List<Long> releaseCargoSumAmounts = new ArrayList<>();
+        List<Long> qualitySumAmounts = new ArrayList<>();
+        for (int i = 7; i >= 1; i--) {
+            dates.add(date.minusDays(i - 1).toString());
+            Long buyerSumAmount = recommendedMapper.VCharts(i-1);
+            Long releaseCargoSumAmount = recommendedMapper.VCharts(i-1);
+            Long qualitySumAmount = recommendedMapper.VCharts(i-1);
+            buyerSumAmounts.add(buyerSumAmount == null ? 0 : buyerSumAmount);
+            releaseCargoSumAmounts.add(releaseCargoSumAmount == null ? 0 : releaseCargoSumAmount);
+            qualitySumAmounts.add(qualitySumAmount == null ? 0 : qualitySumAmount);
+        }
+        System.out.println(releaseCargoSumAmounts);
+        System.out.println(qualitySumAmounts);
+        return null;
     }
 }

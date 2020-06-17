@@ -1,17 +1,16 @@
 package csxt.zwk.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import csxt.entity.SupplierApprovalDetails;
+import csxt.entity.Quality;
 import csxt.entity.SupplierFile;
 import csxt.entity.SupplierRecommend;
 import csxt.entity.SupplierRecommendDetail;
-import csxt.zwk.vo.User;
+import csxt.zwk.vo.ApplicationApprovalDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.jdbc.Null;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author mr.z
@@ -24,10 +23,10 @@ public interface RecommendedMapper extends BaseMapper<SupplierRecommend> {
 
     /**
      * 查询所有供应商
-     * @param supplierFile
+     * @param
      * @return
      */
-    List<SupplierFile> findAllSupplier(SupplierFile supplierFile);
+    List<SupplierFile> findAllSupplier(@Param("productId") Integer productId);
 
     /**
      * 查询指定行数据
@@ -46,4 +45,10 @@ public interface RecommendedMapper extends BaseMapper<SupplierRecommend> {
      * @return
      */
     List<SupplierRecommendDetail> findNoAuditSupplierRecommendDetail(int recommendId);
+
+    /***
+     * 统计图
+     * @return
+     */
+    Long VCharts(int day);
 }

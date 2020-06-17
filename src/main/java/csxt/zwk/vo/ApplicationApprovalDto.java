@@ -1,13 +1,11 @@
 package csxt.zwk.vo;
 
-import csxt.entity.SupplierApproval;
-import csxt.entity.SupplierApprovalDetails;
-import csxt.entity.SupplierRecommend;
-import csxt.entity.SupplierRecommendDetail;
+import csxt.entity.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Map;
@@ -32,4 +30,16 @@ public class ApplicationApprovalDto {
      */
     private SupplierRecommend supplierRecommend;
     private List<SupplierRecommendDetail> supplierRecommendDetails;
+
+    /**
+     *供应商推荐查询
+     */
+    private SupplierFile supplierFile;
+    private Integer productId;
+
+    /*
+    * 分页条件
+    * */
+    private Integer currNo;
+    private Integer pageSize;
 }

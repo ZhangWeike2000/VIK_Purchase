@@ -67,6 +67,10 @@
         values (#{approvalId}, #{productId}, #{productName}, #{productDescribe}, #{amount}, #{unit}, #{price}, #{subtotal}, #{discount})
     </insert>
 
+    <update id="updateSupplierApproval" parameterType="integer">
+        update supplier_file  set change_tag='D002-2' where  id=#{id}
+    </update>
+
     <!--查询未审核申请-->
     <select id="findNoAuditSupplierApproval" resultMap="SupplierApprovalMap" >
         SELECT a.*, SUM(b.subtotal) totalSum FROM supplier_approval a,supplier_approval_details b WHERE a.id = b.approval_id and a.check_tag='S001-0' GROUP BY a.id

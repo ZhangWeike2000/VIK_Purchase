@@ -122,8 +122,8 @@ public class ApplyForApprovalServiceImpl implements ApplyForApprovalService {
     @Override
     public PageInfo<Map<String, Object>> getAll(Integer currNo, Integer pageSize) {
         //分頁查詢mr.z
-        PageHelper.startPage(currNo,pageSize);
-        PageInfo pageInfo=new PageInfo(this.applyForApprovalMapper.findMaterials());
+        PageHelper.startPage(currNo, pageSize);
+        PageInfo pageInfo = new PageInfo(this.applyForApprovalMapper.findMaterials());
         return pageInfo;
     }
 
@@ -136,12 +136,12 @@ public class ApplyForApprovalServiceImpl implements ApplyForApprovalService {
     @Transactional//添加事务
     public int insertSupplierApproval(ApplicationApprovalDto applicationApprovalDto) {
         //添加供应商申请审批
-         applicationApprovalDto.getSupplierApproval().setRegisterTime(new Date());
-         SimpleDateFormat a=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-         Date date=new Date();
-         a.format(applicationApprovalDto.getSupplierApproval().getSupplierTime());
+        applicationApprovalDto.getSupplierApproval().setRegisterTime(new Date());
+        SimpleDateFormat a = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        a.format(applicationApprovalDto.getSupplierApproval().getSupplierTime());
         //添加供应商申请
-         int result = applyForApprovalMapper.insertSupplierApproval(applicationApprovalDto.getSupplierApproval());
+        int result = applyForApprovalMapper.insertSupplierApproval(applicationApprovalDto.getSupplierApproval());
         //添加供应商明细
         SupplierApprovalDetails supplierApprovalDetails = new SupplierApprovalDetails();
         for (Map<String, Object> map : applicationApprovalDto.getSupplierApprovalDetailsList()) {
@@ -195,9 +195,11 @@ public class ApplyForApprovalServiceImpl implements ApplyForApprovalService {
     @Transactional//添加事务
     public int AuditSupplierApproval(ApplicationApprovalDto approvalDto) {
         //審核申請
-       int result= applyForApprovalMapper.AuditSupplierApproval(approvalDto.getSupplierApproval());
+        int result = applyForApprovalMapper.AuditSupplierApproval(approvalDto.getSupplierApproval());
         //申请明细
         SupplierApprovalDetails supplierApprovalDetails = new SupplierApprovalDetails();
+        //修改标识
+        applyForApprovalMapper.updateSupplierApproval(approvalDto.getSupplierApproval().getSupplierId());
         for (Map<String, Object> map : approvalDto.getSupplierApprovalDetailsList()) {
             //申请管理编号
             supplierApprovalDetails.setApprovalId(approvalDto.getSupplierApproval().getId());
