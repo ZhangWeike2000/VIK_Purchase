@@ -91,13 +91,6 @@ public interface ReleaseCargoDao {
     public Integer selectBuyerExecuteById(int id,int productId);
 
     /**
-     * 查询该产品正在放货或准备放货的执行单编号
-     * @param productId 产品编号
-     * @return 执行单编号
-     */
-    public List<Integer> selectBuyerExecuteById(int productId);
-
-    /**
      *查询该放货明细的放货数量
      * @param buyerPlanId 执行单状态
      * @param productId 产品编号
