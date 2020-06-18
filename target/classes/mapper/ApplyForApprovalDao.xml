@@ -58,7 +58,7 @@
     <insert id="insertSupplierApproval" keyProperty="id" useGeneratedKeys="true">
         insert into erp.supplier_approval
                (supplier_id, supplier_name, supplier_time, phone, area_id, area_name, COMMENT, register, register_time, checker, check_time, total_cost, changer_number, changer, change_time, dispose_number, dispose_name, check_tag, change_tag, apply_tag)
-        values (#{supplierId}, #{supplierName}, #{supplierTime}, #{phone}, #{areaId}, #{areaName}, #{comment}, #{register}, #{registerTime}, null,null, #{totalCost}, #{changerNumber}, #{changer}, null, #{disposeNumber}, #{disposeName}, 'S001-0', #{changeTag}, #{applyTag})
+        values (#{supplierId}, #{supplierName}, #{supplierTime}, #{phone}, #{areaId}, #{areaName}, #{comment}, #{register}, #{registerTime}, null,null, #{totalCost}, #{changerNumber}, #{changer}, null, #{disposeNumber}, #{disposeName}, 'R001-0', #{changeTag}, #{applyTag})
     </insert>
 
     <!--提交申请明细-->
@@ -73,7 +73,7 @@
 
     <!--查询未审核申请-->
     <select id="findNoAuditSupplierApproval" resultMap="SupplierApprovalMap" >
-        SELECT a.*, SUM(b.subtotal) totalSum FROM supplier_approval a,supplier_approval_details b WHERE a.id = b.approval_id and a.check_tag='S001-0' GROUP BY a.id
+        SELECT a.*, SUM(b.subtotal) totalSum FROM supplier_approval a,supplier_approval_details b WHERE a.id = b.approval_id and a.check_tag='R001-0' GROUP BY a.id
     </select>
 
     <!--查询未审核申请明细-->

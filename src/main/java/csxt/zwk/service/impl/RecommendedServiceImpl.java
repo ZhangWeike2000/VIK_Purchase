@@ -94,24 +94,23 @@ public class RecommendedServiceImpl implements RecommendedService {
      * @return
      */
     @Override
-    public List<HashMap> VCharts() {
+    public List<Map> VCharts() {
+        //当前时间
         LocalDate date = LocalDate.now();
-        List<String> dates = new ArrayList<>();
-        Map<String, Object> map = new HashMap<>();
-        List<Long> buyerSumAmounts = new ArrayList<>();
-        List<Long> releaseCargoSumAmounts = new ArrayList<>();
-        List<Long> qualitySumAmounts = new ArrayList<>();
+        //等到近七天
+        HashMap<String,Object> list = null;
+        ArrayList<Map> arrayList = new ArrayList<>();
         for (int i = 7; i >= 1; i--) {
-            dates.add(date.minusDays(i - 1).toString());
-            Long buyerSumAmount = recommendedMapper.VCharts(i-1);
-            Long releaseCargoSumAmount = recommendedMapper.VCharts(i-1);
-            Long qualitySumAmount = recommendedMapper.VCharts(i-1);
-            buyerSumAmounts.add(buyerSumAmount == null ? 0 : buyerSumAmount);
-            releaseCargoSumAmounts.add(releaseCargoSumAmount == null ? 0 : releaseCargoSumAmount);
-            qualitySumAmounts.add(qualitySumAmount == null ? 0 : qualitySumAmount);
+            list=new HashMap<>();
+            list.put("日期",date.minusDays(i - 1).toString());
+            Long number= recommendedMapper.VCharts(i - 1);
+            if (number==null){
+                number=0L;
+            }
+            list.put("总数量",number);
+            arrayList.add(list);
         }
-        System.out.println(releaseCargoSumAmounts);
-        System.out.println(qualitySumAmounts);
-        return null;
+        System.out.println(arrayList);
+        return arrayList;
     }
 }

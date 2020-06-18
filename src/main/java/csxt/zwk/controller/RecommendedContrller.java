@@ -71,7 +71,7 @@ public class RecommendedContrller {
     @GetMapping("/findNoAuditSupplierRecommend")
     public List<SupplierRecommend> findNoAuditSupplierRecommend() {
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("check_tag", "S001-0");
+        hashMap.put("check_tag", "R001-0");
         return recommendedMapper.selectByMap(hashMap);
     }
 
@@ -110,9 +110,8 @@ public class RecommendedContrller {
      * @return
      */
     @GetMapping("/VCharts")
-    public List<Map<String, Object>> VCharts() {
-        recommendedService.VCharts();
-        return null;
+    public List<Map> VCharts() {
+        return  recommendedService.VCharts();
     }
 
 }

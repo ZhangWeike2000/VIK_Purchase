@@ -21,7 +21,7 @@
         select * from supplier_file where id not in
         (
         select supplier_id from supplier_recommend_detail where recommend_id in ( select id from supplier_recommend where product_id=#{productId})
-        )and change_tag='D002-2' and check_tag='S001-1'
+        )and change_tag='D002-2' and check_tag='R001-1'
     </select>
 
     <!--查询指定行数据-->
@@ -33,7 +33,7 @@
     <!--推荐申请提交-->
     <insert id="submitRecommend" keyProperty="id" useGeneratedKeys="true" >
         insert into erp.supplier_recommend(product_id, product_name, referrer, register,register_time, recommend,check_tag)
-        values (#{productId},#{productName},#{referrer},#{register},NOW(),#{recommend},"S001-0");
+        values (#{productId},#{productName},#{referrer},#{register},NOW(),#{recommend},"R001-0");
     </insert>
 
     <!--推荐明细申请提交-->

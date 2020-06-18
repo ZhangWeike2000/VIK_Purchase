@@ -32,5 +32,5 @@ public interface RecommendedService {
      * 统计图
      * @return
      */
-    List<HashMap> VCharts();
+    List<Map> VCharts();
 }
