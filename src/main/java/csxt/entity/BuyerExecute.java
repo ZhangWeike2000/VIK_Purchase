@@ -205,4 +205,25 @@ public class BuyerExecute implements Serializable {
         this.invoiceTag = invoiceTag;
     }
 
+    @Override
+    public String toString() {
+        return "BuyerExecute{" +
+                "id=" + id +
+                ", productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", sumAmount=" + sumAmount +
+                ", sumMoney=" + sumMoney +
+                ", gather='" + gather + '\'' +
+                ", register='" + register + '\'' +
+                ", registerTime=" + registerTime +
+                ", checker='" + checker + '\'' +
+                ", checkTime=" + checkTime +
+                ", checkOpinion='" + checkOpinion + '\'' +
+                ", executeTag='" + executeTag + '\'' +
+                ", checkTag='" + checkTag + '\'' +
+                ", putTag='" + putTag + '\'' +
+                ", qualityTag='" + qualityTag + '\'' +
+                ", invoiceTag='" + invoiceTag + '\'' +
+                '}';
+    }
 }

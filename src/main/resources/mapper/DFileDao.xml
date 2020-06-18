@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="csxt.jyx.dao.DFileDao">
+
+    <resultMap type="csxt.entity.DFile" id="DFileMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="productId" column="product_id" jdbcType="VARCHAR"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="factoryName" column="factory_name" jdbcType="VARCHAR"/>
+        <result property="firstKindId" column="first_kind_id" jdbcType="VARCHAR"/>
+        <result property="firstKindName" column="first_kind_name" jdbcType="VARCHAR"/>
+        <result property="secondKindId" column="second_kind_id" jdbcType="VARCHAR"/>
+        <result property="secondKindName" column="second_kind_name" jdbcType="VARCHAR"/>
+        <result property="thirdKindId" column="third_kind_id" jdbcType="VARCHAR"/>
+        <result property="thirdKindName" column="third_kind_name" jdbcType="VARCHAR"/>
+        <result property="productNick" column="product_nick" jdbcType="VARCHAR"/>
+        <result property="type" column="TYPE" jdbcType="VARCHAR"/>
+        <result property="productClass" column="product_class" jdbcType="VARCHAR"/>
+        <result property="personalUnit" column="personal_unit" jdbcType="VARCHAR"/>
+        <result property="personalValue" column="personal_value" jdbcType="VARCHAR"/>
+        <result property="providerGroup" column="provider_group" jdbcType="VARCHAR"/>
+        <result property="warranty" column="warranty" jdbcType="VARCHAR"/>
+        <result property="twinName" column="twin_name" jdbcType="VARCHAR"/>
+        <result property="twinId" column="twin_id" jdbcType="VARCHAR"/>
+        <result property="lifecycle" column="lifecycle" jdbcType="VARCHAR"/>
+        <result property="listPrice" column="list_price" jdbcType="INTEGER"/>
+        <result property="costPrice" column="cost_price" jdbcType="INTEGER"/>
+        <result property="realCostPrice" column="real_cost_price" jdbcType="INTEGER"/>
+        <result property="amountUnit" column="amount_unit" jdbcType="VARCHAR"/>
+        <result property="productDescribe" column="product_describe" jdbcType="VARCHAR"/>
+        <result property="responsiblePerson" column="responsible_person" jdbcType="VARCHAR"/>
+        <result property="register" column="register" jdbcType="VARCHAR"/>
+        <result property="registerTime" column="register_time" jdbcType="TIMESTAMP"/>
+        <result property="checker" column="checker" jdbcType="VARCHAR"/>
+        <result property="checkTime" column="check_time" jdbcType="TIMESTAMP"/>
+        <result property="checkTag" column="check_tag" jdbcType="VARCHAR"/>
+        <result property="changer" column="changer" jdbcType="VARCHAR"/>
+        <result property="changeTime" column="change_time" jdbcType="TIMESTAMP"/>
+        <result property="changeTag" column="change_tag" jdbcType="VARCHAR"/>
+        <result property="priceChangeTag" column="price_change_tag" jdbcType="VARCHAR"/>
+        <result property="fileChangeAmount" column="file_change_amount" jdbcType="INTEGER"/>
+        <result property="deleteTag" column="delete_tag" jdbcType="VARCHAR"/>
+        <result property="designModuleTag" column="design_module_tag" jdbcType="VARCHAR"/>
+        <result property="designProcedureTag" column="design_procedure_tag" jdbcType="VARCHAR"/>
+        <result property="designCellTag" column="design_cell_tag" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="DFileMap">
+        select
+          id, product_id, product_name, factory_name, first_kind_id, first_kind_name, second_kind_id, second_kind_name, third_kind_id, third_kind_name, product_nick, TYPE, product_class, personal_unit, personal_value, provider_group, warranty, twin_name, twin_id, lifecycle, list_price, cost_price, real_cost_price, amount_unit, product_describe, responsible_person, register, register_time, checker, check_time, check_tag, changer, change_time, change_tag, price_change_tag, file_change_amount, delete_tag, design_module_tag, design_procedure_tag, design_cell_tag
+        from erp.d_file
+        where product_id = #{id}
+    </select>
+
+</mapper>

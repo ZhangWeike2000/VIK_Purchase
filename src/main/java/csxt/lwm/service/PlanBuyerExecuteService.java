@@ -1,5 +1,7 @@
 package csxt.lwm.service;
 
+import csxt.entity.BuyerExecute;
+import csxt.entity.BuyerExecuteDetail;
 import csxt.entity.BuyerPlanDetail;
 import csxt.entity.SupplierFile;
 import csxt.lwm.dto.BuyerExecuteAndDetailDto;
@@ -32,4 +34,20 @@ public interface PlanBuyerExecuteService {
      * @param buyerPlanDetailList 执行单明细信息
      */
     public void updatyeeBurPlanDetailCheckTag(List<BuyerPlanDetail> buyerPlanDetailList);
+    /**
+     * 查询所有的执行单信息
+     * @return 执行单集合
+     */
+    public List<BuyerExecute> selectBuyerExecute();
+    /**
+     * 查询所有的执行单明细
+     * @param buyerExecuteId 执行单编号
+     * @return 执行单明细集合
+     */
+    public List<BuyerExecuteDetail> selectBuyerExecuteDetailByExecuteId(Integer buyerExecuteId);
+    /**
+     * 修改执行单的审核状态
+     * @param buyerExecute 执行单信息
+     */
+    public void updateBuyerExecuteCheckTag(BuyerExecute buyerExecute);
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="csxt.jyx.dao.SGatherMapper">
+<!--    添加-->
+    <insert id="addSGather" parameterType="csxt.entity.SGather" useGeneratedKeys="true" keyProperty="id">
+        insert into s_gather values(null,#{gatherId},#{storer},#{reason},#{reasonexact},#{amountSum},#{costPriceSum},#{gatheredAmountSum},#{remark},#{register},#{registerTime},#{checker},#{checkTime},#{checkTag},#{attemper},#{attemperTime},#{storeTag})
+    </insert>
+
+</mapper>

@@ -10,7 +10,6 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-05-27 23:40:10
  */
-@ToString
 public class SupplierApprovalDetails implements Serializable {
     private static final long serialVersionUID = -46801737496833996L;
     /**
@@ -135,4 +134,19 @@ public class SupplierApprovalDetails implements Serializable {
         this.discount = discount;
     }
 
+    @Override
+    public String toString() {
+        return "SupplierApprovalDetails{" +
+                "id=" + id +
+                ", approvalId=" + approvalId +
+                ", productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productDescribe='" + productDescribe + '\'' +
+                ", amount=" + amount +
+                ", unit='" + unit + '\'' +
+                ", price=" + price +
+                ", subtotal=" + subtotal +
+                ", discount=" + discount +
+                '}';
+    }
 }
