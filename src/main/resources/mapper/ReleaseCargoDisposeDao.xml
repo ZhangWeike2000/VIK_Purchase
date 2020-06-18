@@ -18,6 +18,6 @@
         update release_cargo set dispose_tag='D001-3' where id=#{id}
     </update>
     <update id="updateReleaseCargoDetailQualityNumber" parameterType="csxt.entity.ReleaseCargoDetail">
-        update release_cargo_detail set quality_number=qualified_number where id=#{id}
+        update release_cargo_detail set put_number=qualified_number,quality_number=qualified_number where id=#{id}
     </update>
 </mapper>
