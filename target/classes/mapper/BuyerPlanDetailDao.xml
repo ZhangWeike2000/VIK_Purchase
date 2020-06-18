@@ -24,7 +24,7 @@
 
     <insert id="addBPayDetails" parameterType="csxt.entity.BuyerPlanDetail">
         insert into erp.buyer_plan_detail(buyer_plan_id, product_id, product_name, `DESCRIBE`, amount,real_cost_price, amount_unit, subtotal, gather)
-        values (#{buyerPlanId}, #{productId}, #{productName}, #{describe}, #{amount}, #{realCostPrice}, #{amountUnit}, #{subtotal}, #{gather})
+        values (#{buyerPlanId}, #{productId}, #{productName}, #{describe}, #{amount}, #{realCostPrice}, #{amountUnit}, #{subtotal},'S001-0' )
     </insert>
 
     <select id="getBPayDetailsByPid" parameterType="int" resultType="csxt.entity.BuyerPlanDetail">

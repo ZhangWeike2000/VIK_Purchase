@@ -18,8 +18,10 @@
     </select>
     <!--查询执行单需要放货的总数量-->
     <select id="selectWhetherBePut" parameterType="int" resultType="integer">
-        SELECT SUM(sum_amount) FROM buyer_execute WHERE product_id=#{productId} AND (put_tag='F001-2' OR put_tag='F001-0')
-        AND id IN (SELECT buyer_execute_id FROM buyer_execute_detail WHERE supplier_id=#{supplierId} )
+        SELECT SUM(sum_amount) FROM buyer_execute WHERE product_id=#{productId}
+        AND (put_tag='F001-2' OR put_tag='F001-0')
+        AND id IN (SELECT buyer_execute_id FROM buyer_execute_detail WHERE supplier_id=#{supplierId})
+        AND check_tag='R001-1'
     </select>
     <!--查询这个产品是否有执行单-->
     <select id="selectExecuteWhetherExist" parameterType="int" resultType="integer">

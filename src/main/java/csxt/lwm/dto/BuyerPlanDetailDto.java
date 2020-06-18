@@ -1,73 +1,54 @@
-package csxt.entity;
+package csxt.lwm.dto;
 
-import java.io.Serializable;
+import java.util.Date;
 
-/**
- * (BuyerPlanDetail)实体类
- *
- * @author makejava
- * @since 2020-05-27 23:41:21
- */
-public class BuyerPlanDetail implements Serializable {
+public class BuyerPlanDetailDto {
     private static final long serialVersionUID = 846288885168515930L;
     /**
-    * 采购计划单明细编号
-    */
+     * 采购计划单明细编号
+     */
     private Integer id;
     /**
-    * 采购计划编号
-    */
+     * 采购计划编号
+     */
     private Integer buyerPlanId;
     /**
-    * 产品编号
-    */
+     * 产品编号
+     */
     private String productId;
     /**
-    * 产品名称
-    */
+     * 产品名称
+     */
     private String productName;
     /**
-    * 描述
-    */
+     * 描述
+     */
     private String describe;
     /**
-    * 数量
-    */
+     * 数量
+     */
     private Integer amount;
     /**
      * 单价
      */
     private Integer realCostPrice;
-
-    public Integer getRealCostPrice() {
-        return realCostPrice;
-    }
-
-    public void setRealCostPrice(Integer realCostPrice) {
-        this.realCostPrice = realCostPrice;
-    }
-
-    public String getAmountUnit() {
-        return amountUnit;
-    }
-
-    public void setAmountUnit(String amountUnit) {
-        this.amountUnit = amountUnit;
-    }
+    /**
+     * 审核时间
+     */
+    private Date checkTime;
 
     /**
-    * 单位
-    */
+     * 单位
+     */
     private String amountUnit;
     /**
-    * 小计
-    */
+     * 小计
+     */
     private Integer subtotal;
     /**
-    * 出库单编号集合
-    */
+     * 出库单编号集合
+     */
     private String gather;
-
 
     public Integer getId() {
         return id;
@@ -117,12 +98,28 @@ public class BuyerPlanDetail implements Serializable {
         this.amount = amount;
     }
 
-    public String getAmountunit() {
+    public Integer getRealCostPrice() {
+        return realCostPrice;
+    }
+
+    public void setRealCostPrice(Integer realCostPrice) {
+        this.realCostPrice = realCostPrice;
+    }
+
+    public Date getCheckTime() {
+        return checkTime;
+    }
+
+    public void setCheckTime(Date checkTime) {
+        this.checkTime = checkTime;
+    }
+
+    public String getAmountUnit() {
         return amountUnit;
     }
 
-    public void setAmountunit(String amountunit) {
-        this.amountUnit = amountunit;
+    public void setAmountUnit(String amountUnit) {
+        this.amountUnit = amountUnit;
     }
 
     public Integer getSubtotal() {
@@ -138,6 +135,23 @@ public class BuyerPlanDetail implements Serializable {
     }
 
     public void setGather(String gather) {
+        this.gather = gather;
+    }
+
+    public BuyerPlanDetailDto() {
+    }
+
+    public BuyerPlanDetailDto(Integer id, Integer buyerPlanId, String productId, String productName, String describe, Integer amount, Integer realCostPrice, Date checkTime, String amountUnit, Integer subtotal, String gather) {
+        this.id = id;
+        this.buyerPlanId = buyerPlanId;
+        this.productId = productId;
+        this.productName = productName;
+        this.describe = describe;
+        this.amount = amount;
+        this.realCostPrice = realCostPrice;
+        this.checkTime = checkTime;
+        this.amountUnit = amountUnit;
+        this.subtotal = subtotal;
         this.gather = gather;
     }
 }
